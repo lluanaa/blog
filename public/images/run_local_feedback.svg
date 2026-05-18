@@ -1,0 +1,104 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 466" width="100%" role="img">
+  <title>Feedback do colega sobre o run-local</title>
+  <defs>
+    <filter id="glow-pink">
+      <feGaussianBlur stdDeviation="2.5" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+
+  <!-- Card background -->
+  <rect x="0" y="0" width="520" height="466" rx="12" fill="rgba(255,255,255,0.04)"/>
+
+  <!-- Top bar -->
+  <rect x="1" y="1" width="518" height="36" rx="12" fill="rgba(255,20,147,0.07)"/>
+  <rect x="1" y="25" width="518" height="12" fill="rgba(255,20,147,0.07)"/>
+  <circle cx="18" cy="18" r="5" fill="rgba(255,100,180,0.25)"/>
+  <circle cx="34" cy="18" r="5" fill="rgba(255,100,180,0.15)"/>
+  <circle cx="50" cy="18" r="5" fill="rgba(255,100,180,0.1)"/>
+  <text x="260" y="22" text-anchor="middle" font-family="monospace" font-size="10"
+        fill="rgba(255,180,220,0.4)" letter-spacing="0.06em"># geral</text>
+
+  <!-- ── MESSAGE 1: colega ── -->
+  <circle cx="52" cy="72" r="16" fill="#3d1060" stroke="rgba(255,20,147,0.3)" stroke-width="1"/>
+  <text x="52" y="76" text-anchor="middle" font-family="monospace" font-size="11" font-weight="700"
+        fill="rgba(200,150,255,0.9)">C</text>
+  <text x="76" y="60" font-family="monospace" font-size="12" font-weight="700"
+        fill="rgba(200,150,255,0.85)">colega</text>
+  <text x="123" y="60" font-family="monospace" font-size="9"
+        fill="rgba(255,180,220,0.3)">15h06</text>
+  <text x="76" y="76" font-family="monospace" font-size="12"
+        fill="rgba(255,220,240,0.75)">preciso te dar um feedback</text>
+  <text x="76" y="93" font-family="monospace" font-size="12"
+        fill="rgba(255,220,240,0.75)">o run-local tá incrivelmente bom</text>
+  <text x="76" y="110" font-family="monospace" font-size="12"
+        fill="rgba(255,220,240,0.75)">parabéns</text>
+
+  <!-- divider -->
+  <line x1="36" y1="130" x2="484" y2="130" stroke="rgba(255,100,180,0.08)" stroke-width="1"/>
+
+  <!-- ── MESSAGE 2: eu ── -->
+  <circle cx="52" cy="158" r="16" fill="#2d0a4e" stroke="rgba(255,20,147,0.4)" stroke-width="1"
+          filter="url(#glow-pink)"/>
+  <text x="52" y="162" text-anchor="middle" font-family="monospace" font-size="11" font-weight="700"
+        fill="#ff69b4">eu</text>
+  <text x="76" y="146" font-family="monospace" font-size="12" font-weight="700"
+        fill="#ff69b4">eu</text>
+  <text x="100" y="146" font-family="monospace" font-size="9"
+        fill="rgba(255,180,220,0.3)">15h08</text>
+  <text x="76" y="162" font-family="monospace" font-size="12"
+        fill="rgba(255,220,240,0.75)">gostou</text>
+  <text x="76" y="179" font-family="monospace" font-size="12"
+        fill="rgba(255,220,240,0.75)">bem melhor do q ter 1000000 repositorios</text>
+  <text x="76" y="196" font-family="monospace" font-size="12"
+        fill="rgba(255,220,240,0.75)">clonados dentro ne</text>
+  <text x="76" y="213" font-family="monospace" font-size="12"
+        fill="rgba(255,220,240,0.75)">kkkkkkkkkkkkkkkkk</text>
+  <text x="76" y="230" font-family="monospace" font-size="12"
+        fill="rgba(255,220,240,0.75)">q bom</text>
+  <text x="76" y="247" font-family="monospace" font-size="12"
+        fill="rgba(255,220,240,0.75)">fico feliz</text>
+
+  <!-- divider -->
+  <line x1="36" y1="265" x2="484" y2="265" stroke="rgba(255,100,180,0.08)" stroke-width="1"/>
+
+  <!-- ── MESSAGE 3: colega ── -->
+  <circle cx="52" cy="293" r="16" fill="#3d1060" stroke="rgba(255,20,147,0.3)" stroke-width="1"/>
+  <text x="52" y="297" text-anchor="middle" font-family="monospace" font-size="11" font-weight="700"
+        fill="rgba(200,150,255,0.9)">C</text>
+  <text x="76" y="281" font-family="monospace" font-size="12" font-weight="700"
+        fill="rgba(200,150,255,0.85)">colega</text>
+  <text x="123" y="281" font-family="monospace" font-size="9"
+        fill="rgba(255,180,220,0.3)">15h10</text>
+  <text x="76" y="297" font-family="monospace" font-size="12"
+        fill="rgba(255,220,240,0.75)">sim</text>
+  <text x="76" y="314" font-family="monospace" font-size="12"
+        fill="rgba(255,220,240,0.75)">pqp</text>
+  <text x="76" y="331" font-family="monospace" font-size="12"
+        fill="rgba(255,220,240,0.75)">hot reload tbm funciona perfeito</text>
+  <text x="76" y="348" font-family="monospace" font-size="12"
+        fill="rgba(255,220,240,0.75)">muito muito bom</text>
+  <!-- divider -->
+  <line x1="36" y1="366" x2="484" y2="366" stroke="rgba(255,100,180,0.08)" stroke-width="1"/>
+
+  <!-- ── MESSAGE 4: eu ── -->
+  <circle cx="52" cy="392" r="16" fill="#2d0a4e" stroke="rgba(255,20,147,0.4)" stroke-width="1"
+          filter="url(#glow-pink)"/>
+  <text x="52" y="396" text-anchor="middle" font-family="monospace" font-size="11" font-weight="700"
+        fill="#ff69b4">eu</text>
+  <text x="76" y="380" font-family="monospace" font-size="12" font-weight="700"
+        fill="#ff69b4">eu</text>
+  <text x="100" y="380" font-family="monospace" font-size="9"
+        fill="rgba(255,180,220,0.3)">15h31</text>
+  <text x="76" y="396" font-family="monospace" font-size="12"
+        fill="rgba(255,220,240,0.75)">hehe obg</text>
+  <text x="76" y="413" font-family="monospace" font-size="12"
+        fill="rgba(255,220,240,0.75)">*gif de gato dançando*</text>
+
+  <!-- thin divider -->
+  <line x1="36" y1="433" x2="484" y2="433" stroke="rgba(255,100,180,0.06)" stroke-width="1"/>
+
+  <!-- caption -->
+  <text x="260" y="451" text-anchor="middle" font-family="monospace" font-size="10"
+        fill="rgba(255,180,220,0.25)">feedback real ok, nada fake, só não posso expor nomes. mas fiquei muito muito feliz</text>
+</svg>

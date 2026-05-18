@@ -1,0 +1,106 @@
+/* ── FEATURED CARD ───────────────────────────── */
+.post-featured {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 22px 24px;
+  text-decoration: none;
+  position: relative;
+  overflow: hidden;
+  transition: border-color 0.2s;
+}
+.post-featured:hover { border-color: rgba(255,20,147,0.5); }
+
+.post-featured__shine {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255,120,180,0.6), transparent);
+}
+
+.post-featured__eyebrow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.post-featured__date {
+  font-size: 11px;
+  font-family: var(--font-mono);
+  color: rgba(255,100,180,0.4);
+  letter-spacing: 0.06em;
+}
+
+.post-featured__title {
+  font-size: clamp(18px, 3vw, 26px);
+  line-height: 1.2;
+}
+
+.post-featured__excerpt {
+  font-size: 12px;
+  color: rgba(255,180,220,0.5);
+  line-height: 1.7;
+  font-family: var(--font-mono);
+}
+
+.post-featured__footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 4px;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.post-featured__stats {
+  display: flex;
+  gap: 12px;
+}
+.post-stat {
+  font-size: 12px;
+  font-family: var(--font-mono);
+  color: rgba(255,100,180,0.45);
+  letter-spacing: 0.04em;
+}
+
+/* ── MINI CARD ───────────────────────────────── */
+.post-mini {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding: 14px 16px;
+  text-decoration: none;
+  position: relative;
+  overflow: hidden;
+  transition: border-color 0.2s;
+}
+.post-mini:hover { border-color: rgba(255,20,147,0.4); }
+
+.post-mini__shine {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255,120,180,0.4), transparent);
+}
+
+.post-mini__accent {
+  font-size: 18px;
+  color: rgba(255,100,180,0.2);
+  line-height: 1;
+  margin-bottom: 2px;
+}
+
+.post-mini__title {
+  font-family: var(--font-heading);
+  font-size: 13px;
+  font-weight: 700;
+  color: rgba(255,220,240,0.88);
+  line-height: 1.35;
+}
+
+.post-mini__meta {
+  font-size: 11px;
+  font-family: var(--font-mono);
+  color: rgba(255,100,180,0.35);
+  letter-spacing: 0.04em;
+  margin-top: 2px;
+}

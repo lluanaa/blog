@@ -1,0 +1,130 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 540 450" width="100%" role="img">
+  <title>Gateway time-out · Error 504</title>
+  <defs>
+    <filter id="glow-pink">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="glow-green">
+      <feGaussianBlur stdDeviation="2" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <linearGradient id="progress-grad" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%"   stop-color="#ff1493"/>
+      <stop offset="100%" stop-color="#7b2fff"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Card -->
+  <rect x="1" y="1" width="538" height="448" rx="12"
+        fill="rgba(255,255,255,0.05)" stroke="rgba(255,100,180,0.22)" stroke-width="1"/>
+
+  <!-- error · 504 -->
+  <text x="44" y="52" font-family="monospace" font-size="11"
+        fill="rgba(255,180,220,0.45)" letter-spacing="0.08em">error · 504</text>
+
+  <!-- gateway time-out -->
+  <text x="44" y="84" font-family="monospace" font-size="23" font-weight="700"
+        fill="#ff1493" filter="url(#glow-pink)">gateway time-out</text>
+
+  <!-- divider 1 -->
+  <line x1="44" y1="104" x2="496" y2="104" stroke="rgba(255,100,180,0.2)" stroke-width="1"/>
+
+  <!-- DIAGNÓSTICO label -->
+  <text x="44" y="126" font-family="monospace" font-size="9.5"
+        fill="rgba(255,180,220,0.35)" letter-spacing="0.1em">DIAGNÓSTICO</text>
+
+  <!-- row: Browser -->
+  <circle cx="52" cy="150" r="7" fill="#00ff88" filter="url(#glow-green)" opacity="0.9"/>
+  <text x="70" y="154" font-family="monospace" font-size="12" font-weight="700"
+        fill="rgba(255,220,240,0.85)">Browser</text>
+  <text x="496" y="148" text-anchor="end" font-family="monospace" font-size="11"
+        fill="#00ff88">working</text>
+  <text x="70" y="169" font-family="monospace" font-size="10"
+        fill="rgba(255,180,220,0.4)">Uberlândia</text>
+
+  <!-- row: Cloudflare -->
+  <circle cx="52" cy="198" r="7" fill="#00ff88" filter="url(#glow-green)" opacity="0.9"/>
+  <text x="70" y="202" font-family="monospace" font-size="12" font-weight="700"
+        fill="rgba(255,220,240,0.85)">Cloudflare</text>
+  <text x="496" y="196" text-anchor="end" font-family="monospace" font-size="11"
+        fill="#00ff88">working</text>
+  <!-- progress bar -->
+  <rect x="70" y="208" width="150" height="5" rx="2.5"
+        fill="rgba(255,100,180,0.15)"/>
+  <rect x="70" y="208" width="98"  height="5" rx="2.5"
+        fill="url(#progress-grad)"/>
+
+  <!-- row: Host -->
+  <circle cx="52" cy="240" r="7" fill="#ff1493" filter="url(#glow-pink)" opacity="0.85"/>
+  <text x="70" y="244" font-family="monospace" font-size="12" font-weight="700"
+        fill="rgba(255,220,240,0.85)">Host</text>
+  <text x="496" y="238" text-anchor="end" font-family="monospace" font-size="11"
+        fill="#ff69b4">error</text>
+
+  <!-- divider 2 -->
+  <line x1="44" y1="264" x2="496" y2="264" stroke="rgba(255,100,180,0.2)" stroke-width="1"/>
+
+  <!-- o que aconteceu? -->
+  <text x="44" y="286" font-family="monospace" font-size="12" font-weight="700"
+        fill="#ff69b4">o que aconteceu?</text>
+  <text x="44" y="304" font-family="monospace" font-size="11"
+        fill="rgba(255,220,240,0.6)">o servidor web reportou um erro de gateway time-out.</text>
+
+  <!-- o que eu faço? -->
+  <text x="44" y="330" font-family="monospace" font-size="12" font-weight="700"
+        fill="#ff69b4">o que eu faço?</text>
+  <text x="44" y="348" font-family="monospace" font-size="11"
+        fill="rgba(255,220,240,0.6)">tenta de novo em alguns minutinhos.</text>
+
+  <!-- thin divider -->
+  <line x1="44" y1="372" x2="496" y2="372" stroke="rgba(255,100,180,0.1)" stroke-width="1"/>
+
+  <!-- meta -->
+  <text x="44" y="392" font-family="monospace" font-size="10"
+        fill="rgba(255,180,220,0.3)">Cloudflare Ray ID:
+    <tspan fill="rgba(255,220,240,0.55)">9e598ed04eff941a</tspan>
+  </text>
+
+  <text x="44" y="411" font-family="monospace" font-size="10"
+        fill="rgba(255,180,220,0.3)">Seu IP:</text>
+
+  <!-- pill: click to reveal -->
+  <rect id="pill-bg" x="88" y="399" width="88" height="17" rx="4"
+        fill="rgba(255,20,147,0.12)" stroke="rgba(255,20,147,0.3)" stroke-width="1"
+        style="cursor:pointer"/>
+  <text id="pill-text" x="132" y="411" text-anchor="middle" font-family="monospace" font-size="10"
+        fill="#ff69b4" style="cursor:pointer">Click to reveal</text>
+
+  <text x="44" y="432" font-family="monospace" font-size="10"
+        fill="rgba(255,180,220,0.25)">Performance &amp; segurança por
+    <tspan fill="rgba(255,20,147,0.55)" text-decoration="underline">cloudflare</tspan>
+  </text>
+
+  <script>
+    <![CDATA[
+      var pill = document.getElementById('pill-bg');
+      var pillText = document.getElementById('pill-text');
+      function revealIp() {
+        pillText.textContent = 'carregando...';
+        fetch('https://api64.ipify.org?format=json')
+          .then(function(r) { return r.json(); })
+          .then(function(data) {
+            var ip = data.ip;
+            pill.setAttribute('width', Math.max(88, ip.length * 6.5 + 16));
+            pillText.setAttribute('x', parseFloat(pill.getAttribute('x')) + parseFloat(pill.getAttribute('width')) / 2);
+            pillText.textContent = ip;
+            pill.style.cursor = 'default';
+            pillText.style.cursor = 'default';
+            pill.onclick = null;
+            pillText.onclick = null;
+          })
+          .catch(function() {
+            pillText.textContent = 'não obtido';
+          });
+      }
+      pill.addEventListener('click', revealIp);
+      pillText.addEventListener('click', revealIp);
+    ]]>
+  </script>
+</svg>

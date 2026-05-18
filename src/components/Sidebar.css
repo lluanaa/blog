@@ -1,0 +1,115 @@
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  position: sticky;
+  top: 80px;
+}
+
+.sidebar-profile {
+  padding: 18px 14px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  text-align: center;
+}
+
+.sidebar-avatar {
+  position: relative;
+  margin-bottom: 4px;
+}
+.sidebar-avatar {
+  position: relative;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 38% 38%, #ff69b4, #9b00d3);
+  border: 2px solid var(--pink);
+  box-shadow: 0 0 18px var(--pink-glow);
+  animation: pulse-glow 3s ease-in-out infinite;
+  overflow: hidden;
+  margin-bottom: 4px;
+}
+
+.sidebar-avatar__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.sidebar-avatar__glow {
+  position: absolute;
+  inset: -5px;
+  border-radius: 50%;
+  border: 1px solid rgba(255,20,147,0.25);
+}
+
+.sidebar-profile__greeting {
+  font-size: 13px;
+  font-family: var(--font-heading);
+  font-weight: 800;
+  color: rgba(255,255,255,0.85);
+  letter-spacing: 0.01em;
+}
+
+.sidebar-profile__bio {
+  font-size: 10px;
+  font-family: var(--font-mono);
+  color: var(--white-muted);
+  line-height: 1.5;
+}
+
+/* mood */
+.sidebar-mood {
+  padding: 14px;
+}
+.sidebar-mood::before { display: none; }
+.sidebar-mood__emoji { font-size: 26px; margin-bottom: 6px; display: block; text-align: center; }
+.sidebar-mood__label {
+  font-size: 12px;
+  font-family: var(--font-mono);
+  color: rgba(255,150,200,0.6);
+  letter-spacing: 0.06em;
+  margin-bottom: 8px;
+  text-align: center;
+}
+.sidebar-mood__bar {
+  height: 3px;
+  background: rgba(255,255,255,0.08);
+  border-radius: 2px;
+  overflow: hidden;
+}
+.sidebar-mood__fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--pink), #da70d6);
+  border-radius: 2px;
+  transition: width 0.5s ease;
+}
+
+/* tags */
+.sidebar-tags { padding: 14px; }
+.sidebar-tags::before { display: none; }
+.sidebar-tags__list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+
+
+/* música do dia */
+.sidebar-music { padding: 14px; }
+.sidebar-music::before { display: none; }
+.sidebar-music iframe {
+  border-radius: 8px;
+  display: block;
+}
+
+@media (max-width: 768px) {
+  .sidebar {
+    position: static;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+}
