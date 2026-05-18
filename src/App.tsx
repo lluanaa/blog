@@ -6,6 +6,7 @@ import Posts from './pages/Posts'
 import PostDetail from './pages/PostDetail'
 import About from './pages/About'
 import Guestbook from './pages/Guestbook'
+import NotFound from './pages/NotFound'
 
 export default function App() {
   return (
@@ -18,6 +19,7 @@ export default function App() {
         <Route path="/posts/:slug" element={<PostDetail />} />
         <Route path="/sobre" element={<About />} />
         <Route path="/guestbook" element={<Guestbook />} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>
   )
