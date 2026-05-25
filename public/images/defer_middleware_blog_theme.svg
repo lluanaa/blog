@@ -1,0 +1,98 @@
+<svg width="100%" viewBox="0 0 560 1320" role="img" style="background:#1a0a2e;border-radius:12px;" xmlns="http://www.w3.org/2000/svg">
+  <title>Ordem dos middlewares com defer: antes e depois</title>
+  <desc>Diagrama mostrando como a ordem de aplicação dos middlewares afeta a ordem de execução dos defers — e como trocar duas linhas corrigiu o bug.</desc>
+
+  <defs>
+    <filter id="glow-green">
+      <feGaussianBlur stdDeviation="2.5" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+
+  <!-- ===================== TOP PANEL: ANTES ❌ ===================== -->
+  <text x="280" y="42" text-anchor="middle" font-family="monospace" font-size="22" font-weight="700" fill="rgba(240,149,149,0.9)">antes ❌☠️</text>
+
+  <!-- Code: setup order -->
+  <rect x="20" y="56" width="520" height="68" rx="8" fill="rgba(226,75,74,0.06)" stroke="rgba(226,75,74,0.22)" stroke-width="1"/>
+  <text x="38" y="82" font-family="monospace" font-size="15" fill="rgba(255,180,220,0.45)">svc = QueueingMiddleware(kafka)(svc)</text>
+  <text x="38" y="108" font-family="monospace" font-size="15" fill="rgba(255,100,180,0.8)">svc = IndexingMiddleware(es)(svc)  ← por último</text>
+
+  <!-- ONION: Outer = IndexingMiddleware -->
+  <rect x="20" y="136" width="520" height="260" rx="18" fill="rgba(255,20,147,0.05)" stroke="rgba(255,20,147,0.35)" stroke-width="1.5"/>
+  <text x="44" y="162" font-family="monospace" font-size="16" fill="rgba(255,100,180,0.9)">IndexingMiddleware</text>
+  <text x="44" y="184" font-family="monospace" font-size="14" fill="rgba(255,100,180,0.42)">mais externo → defer roda por último</text>
+
+  <!-- ONION: Middle = QueueingMiddleware -->
+  <rect x="58" y="198" width="444" height="184" rx="13" fill="rgba(123,47,255,0.06)" stroke="rgba(123,47,255,0.4)" stroke-width="1.5"/>
+  <text x="80" y="224" font-family="monospace" font-size="16" fill="rgba(200,150,255,0.9)">QueueingMiddleware</text>
+  <text x="80" y="246" font-family="monospace" font-size="14" fill="rgba(200,150,255,0.42)">interno → defer roda primeiro</text>
+
+  <!-- ONION: Core = service -->
+  <rect x="110" y="264" width="340" height="100" rx="11" fill="rgba(255,255,255,0.03)" stroke="rgba(255,180,220,0.18)" stroke-width="1"/>
+  <text x="280" y="308" text-anchor="middle" font-family="monospace" font-size="16" fill="rgba(255,180,220,0.6)">service</text>
+  <text x="280" y="332" text-anchor="middle" font-family="monospace" font-size="14" fill="rgba(255,180,220,0.3)">(executa a operação)</text>
+
+  <!-- Defer sequence label -->
+  <text x="280" y="424" text-anchor="middle" font-family="monospace" font-size="14" fill="rgba(255,180,220,0.3)">ordem de execução dos defers:</text>
+
+  <!-- Step 1 -->
+  <rect x="20" y="436" width="520" height="58" rx="8" fill="rgba(226,75,74,0.08)" stroke="rgba(226,75,74,0.3)" stroke-width="1"/>
+  <text x="40" y="461" font-family="monospace" font-size="15" fill="#f09595">1. QueueingMiddleware → publica no Kafka</text>
+  <text x="40" y="484" font-family="monospace" font-size="14" fill="rgba(240,149,149,0.6)">   ES ainda não foi atualizado ❌</text>
+
+  <!-- Step 2 -->
+  <rect x="20" y="502" width="520" height="58" rx="8" fill="rgba(255,20,147,0.05)" stroke="rgba(255,100,180,0.18)" stroke-width="1"/>
+  <text x="40" y="527" font-family="monospace" font-size="15" fill="rgba(255,180,220,0.6)">2. IndexingMiddleware → indexa no ES</text>
+  <text x="40" y="550" font-family="monospace" font-size="14" fill="rgba(255,180,220,0.3)">   tarde demais</text>
+
+  <!-- Result -->
+  <rect x="20" y="570" width="520" height="44" rx="8" fill="rgba(226,75,74,0.1)" stroke="rgba(226,75,74,0.4)" stroke-width="1"/>
+  <text x="280" y="598" text-anchor="middle" font-family="monospace" font-size="15" fill="#f09595">dashboard lê ES desatualizado</text>
+
+  <!-- ===== DIVIDER ===== -->
+  <line x1="20" y1="634" x2="540" y2="634" stroke="rgba(255,100,180,0.14)" stroke-width="1" stroke-dasharray="6 4"/>
+
+  <!-- ===================== BOTTOM PANEL: DEPOIS ✓ ===================== -->
+  <text x="280" y="672" text-anchor="middle" font-family="monospace" font-size="22" font-weight="700" fill="#00ff88" filter="url(#glow-green)">depois ✅💚</text>
+
+  <!-- Code: setup order -->
+  <rect x="20" y="686" width="520" height="68" rx="8" fill="rgba(0,255,136,0.04)" stroke="rgba(0,255,136,0.2)" stroke-width="1"/>
+  <text x="38" y="712" font-family="monospace" font-size="15" fill="rgba(0,255,136,0.55)">svc = IndexingMiddleware(es)(svc)</text>
+  <text x="38" y="738" font-family="monospace" font-size="15" fill="rgba(0,255,136,0.9)">svc = QueueingMiddleware(kafka)(svc) ← por último</text>
+
+  <!-- ONION: Outer = QueueingMiddleware -->
+  <rect x="20" y="766" width="520" height="260" rx="18" fill="rgba(123,47,255,0.06)" stroke="rgba(123,47,255,0.45)" stroke-width="1.5"/>
+  <text x="44" y="792" font-family="monospace" font-size="16" fill="rgba(200,150,255,0.9)">QueueingMiddleware</text>
+  <text x="44" y="814" font-family="monospace" font-size="14" fill="rgba(200,150,255,0.42)">mais externo → defer roda por último</text>
+
+  <!-- ONION: Middle = IndexingMiddleware -->
+  <rect x="58" y="828" width="444" height="184" rx="13" fill="rgba(255,20,147,0.05)" stroke="rgba(255,20,147,0.35)" stroke-width="1.5"/>
+  <text x="80" y="854" font-family="monospace" font-size="16" fill="rgba(255,100,180,0.9)">IndexingMiddleware</text>
+  <text x="80" y="876" font-family="monospace" font-size="14" fill="rgba(255,100,180,0.42)">interno → defer roda primeiro</text>
+
+  <!-- ONION: Core = service -->
+  <rect x="110" y="894" width="340" height="100" rx="11" fill="rgba(255,255,255,0.03)" stroke="rgba(255,180,220,0.18)" stroke-width="1"/>
+  <text x="280" y="938" text-anchor="middle" font-family="monospace" font-size="16" fill="rgba(255,180,220,0.6)">service</text>
+  <text x="280" y="962" text-anchor="middle" font-family="monospace" font-size="14" fill="rgba(255,180,220,0.3)">(executa a operação)</text>
+
+  <!-- Defer sequence label -->
+  <text x="280" y="1054" text-anchor="middle" font-family="monospace" font-size="14" fill="rgba(255,180,220,0.3)">ordem de execução dos defers:</text>
+
+  <!-- Step 1 -->
+  <rect x="20" y="1066" width="520" height="58" rx="8" fill="rgba(0,255,136,0.06)" stroke="rgba(0,255,136,0.28)" stroke-width="1"/>
+  <text x="40" y="1091" font-family="monospace" font-size="15" fill="#00ff88">1. IndexingMiddleware → indexa no ES</text>
+  <text x="40" y="1114" font-family="monospace" font-size="14" fill="rgba(0,255,136,0.6)">   ES atualizado ✓</text>
+
+  <!-- Step 2 -->
+  <rect x="20" y="1132" width="520" height="58" rx="8" fill="rgba(0,255,136,0.06)" stroke="rgba(0,255,136,0.28)" stroke-width="1"/>
+  <text x="40" y="1157" font-family="monospace" font-size="15" fill="#00ff88">2. QueueingMiddleware → publica no Kafka</text>
+  <text x="40" y="1180" font-family="monospace" font-size="14" fill="rgba(0,255,136,0.6)">   ES já estava pronto ✓</text>
+
+  <!-- Result -->
+  <rect x="20" y="1200" width="520" height="44" rx="8" fill="rgba(0,255,136,0.07)" stroke="rgba(0,255,136,0.4)" stroke-width="1" filter="url(#glow-green)"/>
+  <text x="280" y="1228" text-anchor="middle" font-family="monospace" font-size="15" fill="#00ff88">dashboard lê ES atualizado ✓</text>
+
+  <!-- ===== CAPTION ===== -->
+  <text x="280" y="1292" text-anchor="middle" font-family="monospace" font-size="13" fill="rgba(255,180,220,0.2)">defer é LIFO. o último middleware aplicado é o mais externo,</text>
+  <text x="280" y="1310" text-anchor="middle" font-family="monospace" font-size="13" fill="rgba(255,180,220,0.2)">e seu defer roda por último</text>
+</svg>

@@ -38,7 +38,7 @@ export default function About() {
             se ajudar alguém no caminho. Em cada post tem o botão de feedback: se algo não fizer sentido, se tiver um erro, ou se você quiser compartilhar uma experiência parecida, me conta lá! Adoro aprender com outras pessoas.
           </p>
           <p className="about-bio__text">
-            Fora do trabalho: coquetelaria, meu gato, muita música, 8 ball pool e gosto musical duvidoso.
+            Fora do trabalho: meu amor, coquetelaria, meu gato, 8 ball pool e muita música duvidosa.
           </p>
         </div>
 

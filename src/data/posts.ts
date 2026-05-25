@@ -44,9 +44,9 @@ Antes de chegar na solução, vale entender por que aquele índice específico e
 
 Existe uma convenção chamada **ESR Rule** (Equality -> Sort -> Range) que define a ordem ideal dos campos em um índice composto. A lógica é:
 
-◈ Campos de **igualdade exata** primeiro: eliminam o máximo de documentos logo de cara
-◈ Campos de **ordenação** no meio: evitam um sort em memória depois
-◈ Campos de **range** (\`$gte\`, \`$lte\`, \`$in\`) por último: são menos seletivos e prejudicam os anteriores se vierem antes
+✦ Campos de **igualdade exata** primeiro: eliminam o máximo de documentos logo de cara
+✦ Campos de **ordenação** no meio: evitam um sort em memória depois
+✦ Campos de **range** (\`$gte\`, \`$lte\`, \`$in\`) por último: são menos seletivos e prejudicam os anteriores se vierem antes
 
 No meu caso: \`tenant_id\` (igualdade, filtra por tenant específico) -> \`type\` (igualdade, boolean exato) -> \`created_at\` (sort, ordenação por data). ESR certinho.
 
@@ -60,8 +60,8 @@ O \`SetHint()\` é uma opção do *driver* do MongoDB que força o uso de um ín
 
 É importante entender que o *hint* e a *query* são coisas separadas:
 
-◈ **O *pipeline*** (\`$match\`, \`$sort\`, \`$skip\`, \`$limit\`) define **o que** buscar
-◈ **O *hint*** diz **como** buscar: qual índice usar, antes mesmo do MongoDB pensar em iniciar o *query planning*. ele simplesmente pula a corrida e vai direto, na pura confiança
+✦ **O *pipeline*** (\`$match\`, \`$sort\`, \`$skip\`, \`$limit\`) define **o que** buscar
+✦ **O *hint*** diz **como** buscar: qual índice usar, antes mesmo do MongoDB pensar em iniciar o *query planning*. ele simplesmente pula a corrida e vai direto, na pura confiança
 
 O MongoDB não exige que o índice cubra todos os campos da *query*. Ele usa o índice pra fazer a triagem inicial, e os campos restantes são filtrados em cima do resultado já reduzido. O *hint* só precisa bater com a **assinatura do índice no banco**: a combinação exata de campos e ordem com que ele foi criado.
 
@@ -107,7 +107,7 @@ Isso entra na lista de coisas pra Luana do futuro resolver... com aprovação do
 
   {
     slug: 'merge-conflict',
-    title: 'conflito de merge: como sobreviver',
+    title: 'conflito de merge no GitHub == caos',
     excerpt:
       'git diz que não consegue fazer o merge automático. você entra em pânico. este post é sobre não entrar em pânico. (mesmo eu entrando. hipocrisia)',
     content: `Como todo mundo sabe, ou se não sabe, vai ficar sabendo agora hehe, toda empresa tem seu próprio *GitFlow*. Hoje vou falar sobre sobreviver a um *gitflow* que contém apenas dois ambientes: *staging* (pré-prod e dev) e *master* (prod) com um time de dev.
@@ -163,9 +163,9 @@ Quando o conflito é na minha própria *branch* antiga (o clássico "já mergeei
 
 O *staging* no nosso fluxo é um ambiente de integração e validação, não é a fonte da verdade do código. Dar *merge* do *staging* na sua *branch* é perigoso:
 
-◈ **você puxa código que não deveria estar no *master* ainda.** pode ter *feature* do coleguinha que ainda não foi aprovada, está em QA, ou pode ser revertida. agora ela está na sua *branch*.
-◈ **efeito dominó no *deploy*.** se a sua *branch* subir pro *master* levando junto esse código, a *feature* do coleguinha vai junto, sem revisão, sem aprovação, sem querer.
-◈ **o histórico fica uma bagunça.** fica impossível rastrear o que veio de onde, e reverter vira pesadelo.
+✦ **você puxa código que não deveria estar no *master* ainda.** pode ter *feature* do coleguinha que ainda não foi aprovada, está em QA, ou pode ser revertida. agora ela está na sua *branch*.
+✦ **efeito dominó no *deploy*.** se a sua *branch* subir pro *master* levando junto esse código, a *feature* do coleguinha vai junto, sem revisão, sem aprovação, sem querer.
+✦ **o histórico fica uma bagunça.** fica impossível rastrear o que veio de onde, e reverter vira pesadelo.
 
 A solução que achamos onde eu trabalho é: criar uma **branch terciária de resolução** a partir da sua própria *branch*, que já tem o *master* como base, e trazer a conflitante pra dentro dela:
 
@@ -204,10 +204,10 @@ por isso meu fluxo é: VS Code pra visualizar, \`--ours\` ou \`--theirs\` só qu
 
 ## dicas finais
 
-◈ sempre dar *pull* na *branch* de origem antes de criar a sua
-◈ não refatorar o que não é do *ticket*
-◈ pedir ajuda quando não souber resolver
-◈ nunca dar *merge* da branch instável que contém mudanças não aprovadas na *sua* branch. seja ela a de conflito ou não
+✦ sempre dar *pull* na *branch* de origem antes de criar a sua
+✦ não refatorar o que não é do *ticket*
+✦ pedir ajuda quando não souber resolver
+✦ nunca dar *merge* da branch instável que contém mudanças não aprovadas na *sua* branch. seja ela a de conflito ou não
 
 e o mais importante: quando o conflito aparecer, respira, caça a *branch* culpada, conversa com quem precisa, e resolve com calma. **a maioria dos conflitos é resolvível em 15 minutos com a pessoa certa do lado.**
 
@@ -221,7 +221,7 @@ e o mais importante: quando o conflito aparecer, respira, caça a *branch* culpa
   },
   {
     slug: 'field-mask',
-    title: 'protobuf FieldMask: implementação que fiz',
+    title: 'maneira não tão certa de implementar protobuf FieldMask',
     excerpt:
       'Alguns campos precisavam ser editados, porém o PUT que tinha mudava tudo. Até o que não precisava. Solução: arriscar usar FieldMask como PATCH.',
     content: `
@@ -384,7 +384,7 @@ cada campo que pode ser atualizado está declarado explicitamente no switch. se 
   },
   {
     slug: '3-anos-como-dev',
-    title: '3 anos como dev: o que mudou',
+    title: '3 anos como dev',
     excerpt:
       'Da garçonete que subiu os projetos no GitHub às 21h um dia antes da entrevista até hoje: o que aprendi, o que ainda me frustra, e por que eu sigo.',
     content: `quando eu entrei na programação foi uma loucura.
@@ -433,10 +433,10 @@ e tenho certeza de uma coisa: se eu tivesse entrado na programação só pelo di
   },
   {
     slug: 'run-local-refatoracao',
-    title: 'como eu ajudei a minha vida, a dos meus colegas e finalmente dormi tranquila',
+    title: 'orquestração local refatorada com Air e volume mounts',
     excerpt:
-      'O título não é exagero. O run-local era um caos: sem hot reload, repos duplicados, 20 docker-composes dessincronizados. Refatorei tudo com Air e volume mounts, e recebi vários elogios (1)',
-    content: `Antes de qualquer coisa: não vou fingir que era algo elegante e bem feito (desculpa ex dev que criou ele). O *run-local* era um caos. COMPLETO CAOS. Minha primeira impressão foi: meudeus, o que é isso KKKKKKKKKKKK
+      'O run-local do meu trabalho era um caos: sem hot reload, repos duplicados, 20 docker-composes dessincronizados. Refatorei tudo com Air e volume mounts, e recebi vários elogios (1)',
+    content: `Antes de qualquer coisa: não vou fingir que era algo elegante e bem feito (desculpa ex dev que criou ele). O *run-local* era um caos. COMPLETO. Minha primeira impressão foi: meudeus, o que é isso (choro). O que era pra ser uma ferramenta de desenvolvimento local, era na verdade código morto. sem utilidade nenhuma.
 
 Para rodar qualquer coisa localmente, você tinha que **copiar o repo inteiro pra dentro da pasta** do run-local. O resultado? Cada projeto tinha seu próprio \`docker-compose.yaml\`, e como precisava rodar vários projetos, acabavam surgindo cópias. Muitas cópias. Umas 20 cópias de \`docker-compose.yaml\` espalhadas por lá.
 
@@ -557,7 +557,7 @@ RUN go install github.com/air-verse/air@latest
 CMD ["air", "-c", ".air.toml"]
 \`\`\`
 
-Genérico por design: o que diferencia um serviço do outro é só o volume mount que aponta pro repo certo. A imagem em si é a mesma. O \`insteadOf\` aponta só pro org da empresa, não pra todo o GitHub — ele só intercepta módulos privados daquele org, sem afetar dependências públicas de outros lugares.
+Genérico por design: o que diferencia um serviço do outro é só o volume mount que aponta pro repo certo. A imagem em si é a mesma. O \`insteadOf\` aponta só pro org da empresa, não pra todo o GitHub. ele só intercepta módulos privados daquele org, sem afetar dependências públicas de outros lugares.
 
 A imagem é criada **uma vez** no primeiro \`docker compose up\`. Depois disso nunca mais, enquanto você só estiver editando código.
 
@@ -609,6 +609,170 @@ O mais satisfatório foi quando tudo ficou pronto. README subiu bonitinho, fui r
     date: '2026-05-09',
     readTime: 7,
     tags: ['docker', 'golang', 'workflow'],
+  },
+    {
+    slug: 'defer-go',
+    title: 'quando a ordem do defer virou um bug silencioso',
+    excerpt: 'Como um bug silencioso de ordem de execução com defer e middlewares empilhados no Go me fez investigar por horas... e no final a correção foram duas linhas trocadas de lugar.',
+    content: `## O que é o \`defer\` no Go?
+
+Se você está começando com Go, provavelmente já viu \`defer\` sendo usado para fechar arquivos, conexões de banco, ou liberar recursos. A ideia é simples: **defer adia a execução de uma função para o momento em que a função ao redor retorna**.
+
+\`\`\`go
+func lerArquivo() {
+    f, _ := os.Open("arquivo.txt") // erro ignorado por simplicidade
+    defer f.Close() // vai rodar quando lerArquivo() retornar
+    // ... faz coisas com o arquivo
+}
+\`\`\`
+
+De boa, né? Mas tem um detalhe que pode te fazer passar horas debugando um bug silencioso, e foi exatamente o que aconteceu comigo.
+
+Ponto importante antes de você começar a ler: a palavra \`defer\` será repetida inúmeras vezes. Espero que não se importe.
+
+## A regra que todo mundo esquece: LIFO
+
+Quando você tem **múltiplos defers** em uma função, eles executam na ordem inversa: **LIFO (Last In, First Out)**. O último \`defer\` registrado é o primeiro a rodar.
+
+\`\`\`go
+func exemplo() {
+    defer fmt.Println("primeiro defer")  // roda por último
+    defer fmt.Println("segundo defer")   // roda segundo
+    defer fmt.Println("terceiro defer")  // roda primeiro
+}
+
+// Output:
+// terceiro defer
+// segundo defer
+// primeiro defer
+\`\`\`
+
+Até faz sentido quando você vê assim. Mas e quando os defers estão escondidos dentro de middlewares empilhados?
+
+A ênfase no middleware é porque foi onde o bug apareceu, mas o \`defer\` em si não tem nada de especial por estar dentro de um middleware. Você pode colocar \`defer\` em qualquer função Go.
+
+O que tornava o bug sutil é que os defers estavam **escondidos**, você não via dois \`defer\` na mesma função, via dois middlewares sendo aplicados em sequência. Parecia código normal de inicialização, não duas chamadas diferidas competindo em ordem.
+
+Se estivesse tudo numa função só, ficaria óbvio, como já vimos, mas vou reforçar:
+
+\`\`\`go
+func operacao() {
+    defer publicarKafka() // roda segundo
+    defer indexarES()     // roda primeiro
+}
+\`\`\`
+
+Mas espalhado em middlewares separados, a conexão entre a ordem de aplicação e a ordem de execução do \`defer\` fica invisível.
+
+## O bug que só aparecia de manhã
+
+No trabalho, temos um dashboard que mostra dados relevantes para os clientes. O problema: **as mudanças do dia só apareciam no dashboard de manhã**, após um re-index completo que roda via CLI toda madrugada. Nenhum log de erro, nada quebrava, mas tinha esse delay infernal.
+
+Durante o dia, quando tinha uma ação do usuário (criar, atualizar, excluir) dentro da plataforma, o dashboard ficava desatualizado. No dia seguinte, tudo batia certinho.
+
+Passei um bom tempo investigando: Redis com cache velho que não atualizava? Race condition no Elasticsearch (ES)? Dados incorretos? Divergência entre os campos que o dashboard buscava em comparação a exportação? (a exportação era a minha fonte da verdade, então fiquei comparando os dois)
+
+A resposta estava na **ordem dos middlewares**.
+
+## Middlewares como camadas de cebola
+
+A arquitetura usa o padrão de middlewares empilhados, cada um envolve o serviço e adiciona comportamento via \`defer\`:
+
+\`\`\`go
+// IndexingMiddleware: indexa o registro no Elasticsearch após cada operação
+func (mw indexingMiddleware) PostRecord(ctx context.Context, c *store.Record) (err error) {
+    defer func() {
+        if err == nil {
+            mw.indexElastic(ctx, c) // atualiza o ES
+        }
+    }()
+    return mw.next.PostRecord(ctx, c)
+}
+
+// QueueingMiddleware: publica evento no Kafka após cada operação
+func (mw queueingMiddleware) PostRecord(ctx context.Context, c *store.Record) (err error) {
+    defer func() {
+        if err == nil {
+            mw.producer.SendMessage(ctx, ...) // avisa o dashboard via Kafka
+        }
+    }()
+    return mw.next.PostRecord(ctx, c)
+}
+\`\`\`
+
+E a inicialização do serviço estava assim:
+
+\`\`\`go
+svc = QueueingMiddleware(config.Kafka)(svc)   // aplicado primeiro
+svc = IndexingMiddleware(config.ElasticSearch)(svc) // aplicado depois
+\`\`\`
+
+Parece que o Indexing roda antes, né? **Errado :)**
+
+## Por que a ordem de aplicação importa
+
+Quando você aplica middlewares assim, está criando camadas:
+
+\`\`\`
+IndexingMiddleware (camada mais externa)
+  └── QueueingMiddleware (camada interna)
+        └── service (núcleo)
+\`\`\`
+
+O último middleware aplicado vira a **camada mais externa**. E como \`defer\` é LIFO, o \`defer\` da camada mais externa roda **por último**.
+
+Então o fluxo real era:
+
+\`\`\`
+1. IndexingMiddleware recebe a chamada
+2. Passa para QueueingMiddleware
+3. QueueingMiddleware passa para o service
+4. Service executa e retorna
+5. defer do QueueingMiddleware roda → publica no Kafka ← PRIMEIRO ❌
+6. defer do IndexingMiddleware roda → indexa no ES ← SEGUNDO (tarde demais)
+\`\`\`
+
+O dashboard recebia o evento Kafka, ia buscar no Elasticsearch, e encontrava o dado **anterior** porque o ES ainda não tinha sido atualizado.
+
+## O fluxo completo para entender o impacto
+
+O Kafka aqui não carrega os dados do registro, ele é só uma **notificação**: "oi, esse registro mudou, vai buscar os dados atualizados". Para ficar um pouco melhor de entender:
+
+[iframe](/images/defer_antes_blog_theme.svg)
+
+[iframe](/images/defer_depois_blog_theme.svg)
+
+## A correção: duas linhas
+
+\`\`\`go
+// antes (errado)
+svc = QueueingMiddleware(config.Kafka)(svc)
+svc = IndexingMiddleware(config.Elasticsearch)(svc)
+
+// depois (correto)
+svc = IndexingMiddleware(config.Elasticsearch)(svc)
+svc = QueueingMiddleware(config.Kafka)(svc)
+\`\`\`
+
+Duas linhas trocadas de lugar. Horas de investigação. Clonazepam como companheiro. Tinha pedido para o Claude, GPT, TODAS AS ENTIDADES DE IA e nenhuma sabia. Para no final ser algo tão bobo assim.
+
+## O que aprender com isso
+
+✦ \`defer\` é LIFO: o último registrado é o primeiro a executar
+✦ Quando middlewares usam \`defer\` para executar lógica pós-chamada, **a ordem de composição define a ordem de execução**: o mais externo roda por último. Sem \`defer\`, a lógica do middleware mais externo roda primeiro, na ida. Vale entender como sua arquitetura específica empilha essas chamadas, porque o impacto do LIFO depende disso
+✦ Bugs silenciosos de ordem de execução são os mais difíceis de encontrar porque nada quebra "visivelmente". O sistema continua funcionando, mas com comportamento errado.
+✦ Logs estratégicos em pontos-chave do fluxo são seus melhores amigos nesses casos
+
+Se quiser se aprofundar no comportamento do \`defer\` no Go:
+✦ [Go spec — Defer statements](https://go.dev/ref/spec#Defer_statements)
+✦ [Tour do Go — Defer](https://go.dev/tour/flowcontrol/12)
+✦ [Effective Go — Defer](https://go.dev/doc/effective_go#defer)
+
+E por último e menos relevante: a palavra \`defer\` foi usada exatamente 48 vezes no total. Eu avisei.
+    `,
+    date: '2026-05-24',
+    readTime: 12,
+    tags: ['defer', 'golang', 'aprendizado'],
   },
 ]
 
