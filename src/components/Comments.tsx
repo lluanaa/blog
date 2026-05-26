@@ -13,7 +13,7 @@ export default function Comments() {
         reactionsEnabled="1"
         emitMetadata="0"
         inputPosition="bottom"
-        theme={window.location.hostname === 'localhost' ? 'purple_dark' : `${window.location.origin}/luana_dev.css`}
+        theme={`${window.location.origin}/luana_dev.css`}
         lang="pt"
       />
     </div>
