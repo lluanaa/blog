@@ -105,6 +105,10 @@ main {
   --color-social-reaction-bg-reacted-hover: rgba(var(--primary-default), 0.18);
 }
 
+body, main {
+  background-color: #1a0a2e !important;
+}
+
 main .pagination-loader-container {
   background-image: url("https://github.com/images/modules/pulls/progressive-disclosure-line-dark.svg");
 }
