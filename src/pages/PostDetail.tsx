@@ -1,5 +1,6 @@
 import { useParams, Link, Navigate, useNavigate } from 'react-router-dom'
 import { getPostBySlug } from '../data/posts'
+import Comments from '../components/Comments'
 import hljs from 'highlight.js/lib/core'
 import go from 'highlight.js/lib/languages/go'
 import bash from 'highlight.js/lib/languages/bash'
@@ -125,9 +126,13 @@ export default function PostDetail() {
         {renderContent(post.content)}
       </article>
 
+      <div className="post-detail__comments fade-up-4">
+        <Comments />
+      </div>
+
       <div className="post-detail__footer fade-up-4">
         <Link to="/posts" className="btn-ghost">~ ver todos os posts</Link>
-        <Link to="/guestbook" className="btn-primary">deixar comentário ♡</Link>
+        <Link to="/guestbook" className="btn-primary">guestbook ♡</Link>
       </div>
     </div>
   )

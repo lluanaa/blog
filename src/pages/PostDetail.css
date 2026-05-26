@@ -1,3 +1,12 @@
+.post-detail__comments {
+  margin-top: 12px;
+}
+
+.comments {
+  border-top: 1px solid rgba(255, 100, 180, 0.12);
+  padding-top: 32px;
+}
+
 .post-detail {
   max-width: 820px;
   margin: 0 auto;
