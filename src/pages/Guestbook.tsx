@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { useForm, ValidationError } from '@formspree/react'
+import { useTranslation } from 'react-i18next'
 import './Guestbook.css'
 
 interface Entry {
@@ -23,14 +24,15 @@ function GuestbookForm({ onReset }: { onReset: () => void }) {
   const [emoji, setEmoji] = useState('🌸')
   const [name, setName] = useState('')
   const [message, setMessage] = useState('')
+  const { t } = useTranslation()
 
   if (state.succeeded) {
     return (
       <div className="gb-success">
-        mensagem enviada. obrigada! 🩷
+        {t('guestbook.success')}
         <br />
         <button className="btn-ghost" style={{ marginTop: '12px' }} onClick={onReset}>
-          enviar outra
+          {t('guestbook.sendAnother')}
         </button>
       </div>
     )
@@ -54,12 +56,12 @@ function GuestbookForm({ onReset }: { onReset: () => void }) {
 
       <div className="gb-fields">
         <div className="gb-field">
-          <label className="gb-label" htmlFor="name">nome / nickname</label>
+          <label className="gb-label" htmlFor="name">{t('guestbook.name')}</label>
           <input
             id="name"
             name="name"
             className="gb-input"
-            placeholder="luana"
+            placeholder={t('guestbook.namePlaceholder')}
             maxLength={30}
             value={name}
             onChange={(e) => setName(e.target.value)}
@@ -68,12 +70,12 @@ function GuestbookForm({ onReset }: { onReset: () => void }) {
           <ValidationError field="name" errors={state.errors} className="gb-error" />
         </div>
         <div className="gb-field">
-          <label className="gb-label" htmlFor="message">mensagem</label>
+          <label className="gb-label" htmlFor="message">{t('guestbook.message')}</label>
           <textarea
             id="message"
             name="message"
             className="gb-input gb-textarea"
-            placeholder="oi luana! seu blog é..."
+            placeholder={t('guestbook.messagePlaceholder')}
             maxLength={200}
             rows={3}
             value={message}
@@ -91,7 +93,7 @@ function GuestbookForm({ onReset }: { onReset: () => void }) {
           className="btn-primary"
           disabled={state.submitting || !name.trim() || !message.trim()}
         >
-          {state.submitting ? 'enviando...' : 'enviar'}
+          {state.submitting ? t('guestbook.submitting') : t('guestbook.submit')}
         </button>
       </div>
     </form>
@@ -100,21 +102,22 @@ function GuestbookForm({ onReset }: { onReset: () => void }) {
 
 export default function Guestbook() {
   const [formKey, setFormKey] = useState(0)
+  const { t } = useTranslation()
 
   return (
     <div className="gb-page">
       <header className="gb-header fade-up">
-        <h1 className="title-display gb-title">// guestbook</h1>
-        <p className="gb-sub">deixa uma mensagem, uma dica, um feedback, qlqr coisa ✨</p>
+        <h1 className="title-display gb-title">{t('guestbook.title')}</h1>
+        <p className="gb-sub">{t('guestbook.subtitle')}</p>
       </header>
 
       <div className="gb-form glass fade-up-2">
-        <div className="label-upper" style={{ marginBottom: '14px' }}>// sua mensagem</div>
+        <div className="label-upper" style={{ marginBottom: '14px' }}>{t('guestbook.yourMessage')}</div>
         <GuestbookForm key={formKey} onReset={() => setFormKey((k) => k + 1)} />
       </div>
 
       <div className="gb-entries fade-up-3">
-        <div className="label-upper">// inspirações</div>
+        <div className="label-upper">{t('guestbook.entries')}</div>
         {initialEntries.map((e) => (
           <div key={e.id} className="gb-entry card">
             <div className="gb-entry__shine" />

@@ -1,0 +1,42 @@
+<svg width="100%" viewBox="0 0 560 620" role="img" style="background:#1a0a2e;border-radius:12px;" xmlns="http://www.w3.org/2000/svg">
+  <title>before: wrong middleware order</title>
+
+  <text x="280" y="42" text-anchor="middle" font-family="monospace" font-size="22" font-weight="700" fill="rgba(240,149,149,0.9)">before ❌☠️</text>
+
+  <!-- Code: setup order -->
+  <rect x="20" y="56" width="520" height="68" rx="8" fill="rgba(226,75,74,0.06)" stroke="rgba(226,75,74,0.22)" stroke-width="1"/>
+  <text x="38" y="82" font-family="monospace" font-size="15" fill="rgba(255,180,220,0.45)">svc = QueueingMiddleware(kafka)(svc)</text>
+  <text x="38" y="108" font-family="monospace" font-size="15" fill="rgba(255,100,180,0.8)">svc = IndexingMiddleware(es)(svc)  ← last applied</text>
+
+  <!-- ONION: Outer = IndexingMiddleware -->
+  <rect x="20" y="136" width="520" height="260" rx="18" fill="rgba(255,20,147,0.05)" stroke="rgba(255,20,147,0.35)" stroke-width="1.5"/>
+  <text x="44" y="162" font-family="monospace" font-size="16" fill="rgba(255,100,180,0.9)">IndexingMiddleware</text>
+  <text x="44" y="184" font-family="monospace" font-size="14" fill="rgba(255,100,180,0.42)">outermost → defer runs last</text>
+
+  <!-- ONION: Middle = QueueingMiddleware -->
+  <rect x="58" y="198" width="444" height="184" rx="13" fill="rgba(123,47,255,0.06)" stroke="rgba(123,47,255,0.4)" stroke-width="1.5"/>
+  <text x="80" y="224" font-family="monospace" font-size="16" fill="rgba(200,150,255,0.9)">QueueingMiddleware</text>
+  <text x="80" y="246" font-family="monospace" font-size="14" fill="rgba(200,150,255,0.42)">inner → defer runs first</text>
+
+  <!-- ONION: Core = service -->
+  <rect x="110" y="264" width="340" height="100" rx="11" fill="rgba(255,255,255,0.03)" stroke="rgba(255,180,220,0.18)" stroke-width="1"/>
+  <text x="280" y="308" text-anchor="middle" font-family="monospace" font-size="16" fill="rgba(255,180,220,0.6)">service</text>
+  <text x="280" y="332" text-anchor="middle" font-family="monospace" font-size="14" fill="rgba(255,180,220,0.3)">(executes the operation)</text>
+
+  <!-- Defer sequence label -->
+  <text x="280" y="424" text-anchor="middle" font-family="monospace" font-size="14" fill="rgba(255,180,220,0.3)">defer execution order:</text>
+
+  <!-- Step 1 -->
+  <rect x="20" y="436" width="520" height="58" rx="8" fill="rgba(226,75,74,0.08)" stroke="rgba(226,75,74,0.3)" stroke-width="1"/>
+  <text x="40" y="461" font-family="monospace" font-size="15" fill="#f09595">1. QueueingMiddleware → publishes to Kafka</text>
+  <text x="40" y="484" font-family="monospace" font-size="14" fill="rgba(240,149,149,0.6)">   ES not updated yet ❌</text>
+
+  <!-- Step 2 -->
+  <rect x="20" y="502" width="520" height="58" rx="8" fill="rgba(255,20,147,0.05)" stroke="rgba(255,100,180,0.18)" stroke-width="1"/>
+  <text x="40" y="527" font-family="monospace" font-size="15" fill="rgba(255,180,220,0.6)">2. IndexingMiddleware → indexes in ES</text>
+  <text x="40" y="550" font-family="monospace" font-size="14" fill="rgba(255,180,220,0.3)">   too late</text>
+
+  <!-- Result -->
+  <rect x="20" y="570" width="520" height="40" rx="8" fill="rgba(226,75,74,0.1)" stroke="rgba(226,75,74,0.4)" stroke-width="1"/>
+  <text x="280" y="596" text-anchor="middle" font-family="monospace" font-size="15" fill="#f09595">dashboard reads stale ES data</text>
+</svg>

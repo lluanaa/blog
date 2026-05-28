@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next'
 import './About.css'
 
 const stack = [
@@ -9,6 +10,9 @@ const stack = [
 ]
 
 export default function About() {
+  const { t } = useTranslation()
+  const nowItems = t('about.nowItems', { returnObjects: true }) as string[]
+
   return (
     <div className="about-page">
       <header className="about-header fade-up">
@@ -17,33 +21,24 @@ export default function About() {
           <div className="about-avatar__glow" />
         </div>
         <div>
-          <h1 className="title-display about-name">oi, eu sou a luana</h1>
-          <p className="about-tagline">dev full-stack e aspirante a devops</p>
+          <h1 className="title-display about-name">{t('about.name')}</h1>
+          <p className="about-tagline">{t('about.tagline')}</p>
           <span className="status-online" style={{ marginTop: '10px', display: 'inline-flex' }}>
-            online
+            {t('about.online')}
           </span>
         </div>
       </header>
 
       <div className="about-grid">
         <div className="about-bio glass fade-up-2">
-          <div className="label-upper" style={{ marginBottom: '14px' }}>// sobre mim</div>
-          <p className="about-bio__text">
-            Sou dev full-stack há aproximadamente 3 anos. Já trabalhei com muitas tecnologias, mas atualmente trabalho com
-            Go no backend e React/TypeScript no frontend. Junto com microserviços, Kafka, MongoDB, gRPC, o pacote completo.
-          </p>
-          <p className="about-bio__text">
-            Esse blog é o meu cantinho para documentar o que aprendo, os bugs que me derrubam, me fazem perder noites de sono (e crescer),
-            e as soluções que finalmente fazem sentido. Escrevo pra mim mesma, mas fico feliz
-            se ajudar alguém no caminho. Em cada post tem o botão de feedback: se algo não fizer sentido, se tiver um erro, ou se você quiser compartilhar uma experiência parecida, me conta lá! Adoro aprender com outras pessoas.
-          </p>
-          <p className="about-bio__text">
-            Fora do trabalho: meu amor, coquetelaria, meu gato, 8 ball pool e muita música duvidosa.
-          </p>
+          <div className="label-upper" style={{ marginBottom: '14px' }}>{t('about.bio')}</div>
+          <p className="about-bio__text">{t('about.bio1')}</p>
+          <p className="about-bio__text">{t('about.bio2')}</p>
+          <p className="about-bio__text">{t('about.bio3')}</p>
         </div>
 
         <div className="about-stack glass fade-up-3">
-          <div className="label-upper" style={{ marginBottom: '14px' }}>// stack atual</div>
+          <div className="label-upper" style={{ marginBottom: '14px' }}>{t('about.stack')}</div>
           {stack.map((s) => (
             <div key={s.name} className="about-stack__item">
               <div className="about-stack__row">
@@ -61,7 +56,7 @@ export default function About() {
         </div>
 
         <div className="about-links glass fade-up-4">
-          <div className="label-upper" style={{ marginBottom: '14px' }}>// links</div>
+          <div className="label-upper" style={{ marginBottom: '14px' }}>{t('about.links')}</div>
           <div className="about-links__list">
             <a href="https://github.com/lluanaa" target="_blank" rel="noreferrer" className="about-link">
               <span className="about-link__icon">✦</span>
@@ -79,12 +74,11 @@ export default function About() {
         </div>
 
         <div className="about-now glass fade-up-4">
-          <div className="label-upper" style={{ marginBottom: '14px' }}>// agora</div>
+          <div className="label-upper" style={{ marginBottom: '14px' }}>{t('about.now')}</div>
           <ul className="about-now__list">
-            <li>aprendendo sobre tudo que posso</li>
-            <li>debuggando coisas que eu mesma criei e esqueci</li>
-            <li>pensando em ser uma kubestronauta um dia. me falta $</li>
-            <li>tomando café demais. gastrite nesse momento - moderada</li>
+            {nowItems.map((item, i) => (
+              <li key={i}>{item}</li>
+            ))}
           </ul>
         </div>
       </div>

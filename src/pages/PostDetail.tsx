@@ -1,4 +1,6 @@
+import { useState } from 'react'
 import { useParams, Link, Navigate, useNavigate } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 import { getPostBySlug } from '../data/posts'
 import Comments from '../components/Comments'
 import hljs from 'highlight.js/lib/core'
@@ -12,10 +14,30 @@ hljs.registerLanguage('go', go)
 hljs.registerLanguage('bash', bash)
 hljs.registerLanguage('typescript', typescript)
 
-function formatDate(iso: string) {
-  return new Date(iso).toLocaleDateString('pt-BR', {
+function formatDate(iso: string, locale = 'pt-BR') {
+  return new Date(iso).toLocaleDateString(locale, {
     day: '2-digit', month: 'long', year: 'numeric',
   })
+}
+
+function CopyButton({ code }: { code: string }) {
+  const [copied, setCopied] = useState(false)
+  function copy() {
+    navigator.clipboard.writeText(code).then(() => {
+      setCopied(true)
+      setTimeout(() => setCopied(false), 2000)
+    })
+  }
+  return (
+    <button
+      className={`post-content__copy${copied ? ' post-content__copy--copied' : ''}`}
+      onClick={copy}
+      aria-label="copy code"
+      data-tooltip={copied ? 'Copiado!' : 'Copiar'}
+    >
+      {copied ? '✓' : '⧉'}
+    </button>
+  )
 }
 
 /** Very small markdown-like renderer (no external deps) */
@@ -45,7 +67,10 @@ function renderContent(raw: string) {
         : hljs.highlightAuto(code).value
       elements.push(
         <div key={i} className="post-content__code-wrap">
-          {lang && <span className="post-content__code-lang">{lang}</span>}
+          <div className="post-content__code-header">
+            {lang && <span className="post-content__code-lang">{lang}</span>}
+            <CopyButton code={code} />
+          </div>
           <pre className="post-content__pre"><code dangerouslySetInnerHTML={{ __html: highlighted }} /></pre>
         </div>
       )
@@ -54,15 +79,11 @@ function renderContent(raw: string) {
     } else if (/^\[iframe\]\(.*?\)$/.test(line.trim())) {
       const match = line.trim().match(/^\[iframe\]\((.*?)\)$/)
       if (match) {
+        const src = match[1]
         elements.push(
-          <iframe
-            key={i}
-            src={match[1]}
-            className="post-content__iframe"
-            title="embed"
-            allowTransparency={true}
-            style={{ border: 'none', background: 'transparent' }}
-          />
+          src.endsWith('.svg')
+            ? <img key={i} src={src} className="post-content__svg" alt="" />
+            : <iframe key={i} src={src} className="post-content__iframe" title="embed" allowTransparency={true} style={{ border: 'none', background: 'transparent' }} />
         )
       }
     } else if (/^!\[.*?\]\(.*?\)$/.test(line.trim())) {
@@ -94,36 +115,42 @@ function renderContent(raw: string) {
 export default function PostDetail() {
   const { slug } = useParams<{ slug: string }>()
   const navigate = useNavigate()
+  const { t, i18n } = useTranslation()
+  const isEn = i18n.language === 'en'
   const post = getPostBySlug(slug ?? '')
 
   if (!post) return <Navigate to="/posts" replace />
 
+  const title = isEn && post.title_en ? post.title_en : post.title
+  const excerpt = isEn && post.excerpt_en ? post.excerpt_en : post.excerpt
+  const content = isEn && post.content_en ? post.content_en : post.content
+  const locale = isEn ? 'en-US' : 'pt-BR'
+
   return (
     <div className="post-detail">
       <div className="post-detail__back fade-up">
-        <button onClick={() => navigate(-1)} className="btn-ghost"> ~ voltar</button>
+        <button onClick={() => navigate(-1)} className="btn-ghost">{t('post.back')}</button>
       </div>
 
       <header className="post-detail__header fade-up-2">
         <div className="post-detail__eyebrow">
           <div className="post-detail__tags">
-            {post.tags.map((t) => (
-              <span key={t} className="tag-pill">{t}</span>
+            {post.tags.map((tag) => (
+              <span key={tag} className="tag-pill">{tag}</span>
             ))}
           </div>
-          <span className="post-detail__date">{formatDate(post.date)}</span>
+          <span className="post-detail__date">{formatDate(post.date, locale)}</span>
         </div>
-        <h1 className="title-display post-detail__title">{post.title}</h1>
-        <p className="post-detail__excerpt">{post.excerpt}</p>
+        <h1 className="title-display post-detail__title">{title}</h1>
+        <p className="post-detail__excerpt">{excerpt}</p>
         <div className="post-detail__meta">
-          <span>◎ {post.readTime} min de leitura</span>
+          <span>{t('post.readTime', { min: post.readTime })}</span>
         </div>
       </header>
 
-      <div className="post-detail__divider" />
 
-      <article className="post-detail__content card fade-up-3">
-        {renderContent(post.content)}
+<article className="post-detail__content card fade-up-3">
+        {renderContent(content)}
       </article>
 
       <div className="post-detail__comments fade-up-4">
@@ -131,8 +158,8 @@ export default function PostDetail() {
       </div>
 
       <div className="post-detail__footer fade-up-4">
-        <Link to="/posts" className="btn-ghost">~ ver todos os posts</Link>
-        <Link to="/guestbook" className="btn-primary">guestbook ♡</Link>
+        <Link to="/posts" className="btn-ghost">{t('post.allPosts')}</Link>
+        <Link to="/guestbook" className="btn-primary">{t('post.guestbook')}</Link>
       </div>
     </div>
   )

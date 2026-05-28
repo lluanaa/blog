@@ -1,0 +1,122 @@
+<svg width="100%" viewBox="0 0 680 560" role="img" style="background:#1a0a2e;border-radius:12px;" xmlns="http://www.w3.org/2000/svg">
+  <title>How git resolves the conflict with the tertiary branch</title>
+  <desc>Diagram showing that the tertiary branch is created from my-feature-branch, brings the conflicting branch in, and after entering staging creates a more recent common ancestor -- eliminating the conflict.</desc>
+
+  <defs>
+    <marker id="arr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+    <filter id="glow-pink">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="glow-green">
+      <feGaussianBlur stdDeviation="2.5" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+
+  <!-- ===== COLUMN HEADERS ===== -->
+  <text x="80"  y="26" text-anchor="middle" font-family="monospace" font-size="11" fill="rgba(255,180,220,0.45)">master</text>
+  <text x="240" y="26" text-anchor="middle" font-family="monospace" font-size="11" fill="#ff69b4">my-feature-branch</text>
+  <text x="430" y="26" text-anchor="middle" font-family="monospace" font-size="11" fill="rgba(255,180,220,0.45)">teammate-branch</text>
+  <text x="590" y="26" text-anchor="middle" font-family="monospace" font-size="11" fill="rgba(255,180,220,0.45)">staging</text>
+
+  <!-- ===== RAIL LINES ===== -->
+  <line x1="80"  y1="34" x2="80"  y2="500" stroke="rgba(255,100,180,0.12)" stroke-width="1.5" stroke-dasharray="4 4"/>
+  <line x1="240" y1="34" x2="240" y2="500" stroke="rgba(255,20,147,0.2)"  stroke-width="1.5" stroke-dasharray="4 4"/>
+  <line x1="430" y1="34" x2="430" y2="310" stroke="rgba(255,100,180,0.12)" stroke-width="1.5" stroke-dasharray="4 4"/>
+  <line x1="590" y1="34" x2="590" y2="500" stroke="rgba(255,100,180,0.12)" stroke-width="1.5" stroke-dasharray="4 4"/>
+
+  <!-- ===== ORIGIN NODES ===== -->
+  <circle cx="80"  cy="60" r="13" fill="#2d0a4e" stroke="rgba(255,100,180,0.35)" stroke-width="1.5"/>
+  <text   x="80"  y="64" text-anchor="middle" font-family="monospace" font-size="10" fill="rgba(255,180,220,0.6)">M</text>
+
+  <circle cx="590" cy="60" r="13" fill="#2d0a4e" stroke="rgba(255,100,180,0.35)" stroke-width="1.5"/>
+  <text   x="590" y="64" text-anchor="middle" font-family="monospace" font-size="10" fill="rgba(255,180,220,0.6)">S</text>
+
+  <!-- ===== BRANCHES FROM MASTER ===== -->
+  <path d="M93 60 Q160 60 227 118" fill="none" stroke="rgba(255,20,147,0.4)"  stroke-width="1.5" marker-end="url(#arr)"/>
+  <path d="M93 60 Q260 60 417 118" fill="none" stroke="rgba(255,100,180,0.25)" stroke-width="1.5" marker-end="url(#arr)"/>
+
+  <!-- ===== MY-FEATURE-BRANCH: F ===== -->
+  <circle cx="240" cy="133" r="13" fill="#2d0a4e" stroke="#ff1493" stroke-width="1.5" filter="url(#glow-pink)"/>
+  <text   x="240" y="137" text-anchor="middle" font-family="monospace" font-size="10" fill="#ff69b4">F</text>
+
+  <!-- ===== TEAMMATE: C1 → C2 ===== -->
+  <circle cx="430" cy="133" r="13" fill="#2d0a4e" stroke="rgba(123,47,255,0.7)" stroke-width="1.5"/>
+  <text   x="430" y="137" text-anchor="middle" font-family="monospace" font-size="10" fill="rgba(200,150,255,0.85)">C1</text>
+
+  <line x1="430" y1="146" x2="430" y2="181" stroke="rgba(123,47,255,0.35)" stroke-width="1.5" marker-end="url(#arr)"/>
+
+  <circle cx="430" cy="196" r="13" fill="#2d0a4e" stroke="rgba(123,47,255,0.7)" stroke-width="1.5"/>
+  <text   x="430" y="200" text-anchor="middle" font-family="monospace" font-size="10" fill="rgba(200,150,255,0.85)">C2</text>
+
+  <!-- C2 enters staging -->
+  <path d="M443 196 Q510 205 577 222" fill="none" stroke="rgba(123,47,255,0.25)" stroke-width="1" stroke-dasharray="5 3" marker-end="url(#arr)"/>
+  <text x="510" y="205" text-anchor="middle" font-family="monospace" font-size="9" fill="rgba(200,150,255,0.4)">enters staging</text>
+
+  <circle cx="590" cy="232" r="11" fill="#2d0a4e" stroke="rgba(123,47,255,0.5)" stroke-width="1.5"/>
+  <text   x="590" y="236" text-anchor="middle" font-family="monospace" font-size="9" fill="rgba(200,150,255,0.7)">C2</text>
+
+  <!-- ===== CONFLICT BADGE ===== -->
+  <rect x="292" y="148" width="72" height="22" rx="5" fill="rgba(226,75,74,0.12)" stroke="rgba(226,75,74,0.55)" stroke-width="1"/>
+  <text x="328" y="163" text-anchor="middle" font-family="monospace" font-size="10" fill="#f09595">⚡ conflict</text>
+  <line x1="292" y1="159" x2="255" y2="148" stroke="rgba(226,75,74,0.4)" stroke-width="0.8"/>
+  <line x1="364" y1="159" x2="417" y2="190" stroke="rgba(226,75,74,0.4)" stroke-width="0.8"/>
+
+  <!-- ===== FIX/RESOLVE-CONFLICT: T1 BRANCHES FROM F ===== -->
+  <line x1="240" y1="146" x2="240" y2="272" stroke="rgba(255,20,147,0.2)" stroke-width="1" stroke-dasharray="3 3"/>
+  <text x="240" y="268" text-anchor="middle" font-family="monospace" font-size="9" fill="rgba(255,180,220,0.35)">fix/resolve-conflict</text>
+
+  <!-- C2 merges INTO T1 -->
+  <path d="M417 196 Q328 268 256 290" fill="none" stroke="rgba(123,47,255,0.35)" stroke-width="1.2" marker-end="url(#arr)"/>
+  <text x="348" y="255" text-anchor="middle" font-family="monospace" font-size="9" fill="rgba(200,150,255,0.45)">merge here</text>
+
+  <!-- T1 commit -->
+  <circle cx="240" cy="303" r="15" fill="#2d0a4e" stroke="#00ff88" stroke-width="1.8" filter="url(#glow-green)"/>
+  <text   x="240" y="307" text-anchor="middle" font-family="monospace" font-size="10" fill="#00ff88">T1</text>
+  <text   x="260" y="299" font-family="monospace" font-size="9" fill="rgba(0,255,136,0.6)">conflict resolved</text>
+
+  <!-- T1 → staging -->
+  <path d="M255 303 Q415 345 576 363" fill="none" stroke="rgba(0,255,136,0.4)" stroke-width="1.5" marker-end="url(#arr)"/>
+
+  <!-- staging receives T1 -->
+  <circle cx="590" cy="373" r="15" fill="#2d0a4e" stroke="#00ff88" stroke-width="1.8" filter="url(#glow-green)"/>
+  <text   x="590" y="377" text-anchor="middle" font-family="monospace" font-size="10" fill="#00ff88">T1</text>
+
+  <!-- ===== MORE RECENT COMMON ANCESTOR ===== -->
+  <line x1="55" y1="373" x2="574" y2="373" stroke="rgba(0,255,136,0.18)" stroke-width="1" stroke-dasharray="6 4"/>
+  <rect x="57" y="360" width="136" height="18" rx="4" fill="rgba(0,255,136,0.07)" stroke="rgba(0,255,136,0.28)" stroke-width="0.8"/>
+  <text x="125" y="372" text-anchor="middle" font-family="monospace" font-size="8.5" fill="rgba(0,255,136,0.8)">common ancestor</text>
+
+  <!-- ===== F → staging NO CONFLICT ===== -->
+  <line x1="240" y1="318" x2="240" y2="428" stroke="rgba(255,20,147,0.2)" stroke-width="1.5" stroke-dasharray="3 3"/>
+
+  <circle cx="240" cy="440" r="13" fill="#2d0a4e" stroke="#ff1493" stroke-width="1.5" filter="url(#glow-pink)"/>
+  <text   x="240" y="444" text-anchor="middle" font-family="monospace" font-size="10" fill="#ff69b4">F</text>
+
+  <path d="M253 440 Q415 440 576 440" fill="none" stroke="#00ff88" stroke-width="2" marker-end="url(#arr)" filter="url(#glow-green)"/>
+
+  <rect x="346" y="427" width="100" height="18" rx="4" fill="rgba(0,255,136,0.08)" stroke="rgba(0,255,136,0.3)" stroke-width="0.8"/>
+  <text x="396" y="439" text-anchor="middle" font-family="monospace" font-size="9" fill="#00ff88">no conflict ✓</text>
+
+  <circle cx="590" cy="440" r="13" fill="#2d0a4e" stroke="#00ff88" stroke-width="1.8" filter="url(#glow-green)"/>
+  <text   x="590" y="444" text-anchor="middle" font-family="monospace" font-size="10" fill="#00ff88">F</text>
+
+  <!-- ===== LEGEND ===== -->
+  <rect x="40" y="476" width="600" height="52" rx="8" fill="rgba(255,255,255,0.04)" stroke="rgba(255,100,180,0.15)" stroke-width="1"/>
+  <circle cx="65" cy="496" r="7" fill="#2d0a4e" stroke="#ff1493" stroke-width="1.5"/>
+  <text   x="78"  y="500" font-family="monospace" font-size="10" fill="rgba(255,180,220,0.65)">my-feature-branch</text>
+  <circle cx="65" cy="516" r="7" fill="#2d0a4e" stroke="rgba(123,47,255,0.7)" stroke-width="1.5"/>
+  <text   x="78"  y="520" font-family="monospace" font-size="10" fill="rgba(255,180,220,0.65)">teammate-branch</text>
+  <circle cx="235" cy="496" r="7" fill="#2d0a4e" stroke="#00ff88" stroke-width="1.5"/>
+  <text   x="248" y="500" font-family="monospace" font-size="10" fill="rgba(255,180,220,0.65)">tertiary branch / no conflict</text>
+  <rect   x="235" y="509" width="12" height="10" rx="3" fill="rgba(0,255,136,0.08)" stroke="rgba(0,255,136,0.3)" stroke-width="0.8"/>
+  <text   x="253" y="519" font-family="monospace" font-size="10" fill="rgba(255,180,220,0.65)">more recent common ancestor</text>
+  <rect   x="455" y="489" width="58" height="18" rx="4" fill="rgba(226,75,74,0.12)" stroke="rgba(226,75,74,0.5)" stroke-width="0.8"/>
+  <text   x="484" y="501" text-anchor="middle" font-family="monospace" font-size="9" fill="#f09595">⚡ conflict</text>
+
+  <!-- caption -->
+  <text x="340" y="545" text-anchor="middle" font-family="monospace" font-size="10" fill="rgba(255,180,220,0.2)">merge diagram with tertiary branch</text>
+</svg>

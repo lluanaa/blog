@@ -1,17 +1,26 @@
 import { useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 import './Navbar.css'
-
-const links = [
-  { to: '/',         label: 'início',    icon: '✦' },
-  { to: '/posts',    label: 'posts',     icon: '✦' },
-  { to: '/sobre',    label: 'sobre',     icon: '✦' },
-  // { to: '/guestbook',label: 'guestbook', icon: '♡' },
-]
 
 export default function Navbar() {
   const { pathname } = useLocation()
   const [open, setOpen] = useState(false)
+  const { t, i18n } = useTranslation()
+
+  const links = [
+    { to: '/',       label: t('nav.home') },
+    { to: '/posts',  label: t('nav.posts') },
+    { to: '/sobre',  label: t('nav.about') },
+  ]
+
+  function toggleLang() {
+    const next = i18n.language === 'pt-BR' ? 'en' : 'pt-BR'
+    i18n.changeLanguage(next)
+    localStorage.setItem('lang', next)
+  }
+
+  const langLabel = i18n.language === 'pt-BR' ? 'en' : 'pt'
 
   return (
     <>
@@ -34,6 +43,11 @@ export default function Navbar() {
               </Link>
             </li>
           ))}
+          <li>
+            <button className="navbar__lang" onClick={toggleLang} aria-label="toggle language">
+              {langLabel}
+            </button>
+          </li>
         </ul>
 
         {/* mobile burger */}
@@ -55,10 +69,17 @@ export default function Navbar() {
             className={`mobile-drawer__link ${pathname === l.to ? 'mobile-drawer__link--active' : ''}`}
             onClick={() => setOpen(false)}
           >
-            <span className="mobile-drawer__icon">{l.icon}</span>
+            <span className="mobile-drawer__icon">✦</span>
             {l.label}
           </Link>
         ))}
+        <button
+          className="mobile-drawer__link mobile-drawer__lang"
+          onClick={() => { toggleLang(); setOpen(false) }}
+        >
+          <span className="mobile-drawer__icon">✦</span>
+          {i18n.language === 'pt-BR' ? 'english' : 'português'}
+        </button>
       </div>
 
       {open && (

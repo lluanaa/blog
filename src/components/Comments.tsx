@@ -1,6 +1,10 @@
 import Giscus from '@giscus/react'
+import { useTranslation } from 'react-i18next'
 
 export default function Comments() {
+  const { i18n } = useTranslation()
+  const lang = i18n.language === 'en' ? 'en' : 'pt'
+
   return (
     <div className="comments">
       <Giscus
@@ -14,7 +18,7 @@ export default function Comments() {
         emitMetadata="0"
         inputPosition="bottom"
         theme="purple_dark"
-        lang="pt"
+        lang={lang}
       />
     </div>
   )

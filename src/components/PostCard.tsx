@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 import type { Post } from '../data/posts'
 import './PostCard.css'
 
@@ -8,25 +9,31 @@ interface Props {
   className?: string
 }
 
-function formatDate(iso: string) {
-  return new Date(iso).toLocaleDateString('pt-BR', {
+function formatDate(iso: string, locale: string) {
+  return new Date(iso).toLocaleDateString(locale, {
     day: '2-digit', month: 'short', year: 'numeric',
   })
 }
 
 export default function PostCard({ post, featured = false, className = '' }: Props) {
+  const { t, i18n } = useTranslation()
+  const isEn = i18n.language === 'en'
+  const title = isEn && post.title_en ? post.title_en : post.title
+  const excerpt = isEn && post.excerpt_en ? post.excerpt_en : post.excerpt
+  const locale = isEn ? 'en-US' : 'pt-BR'
+
   if (featured) {
     return (
       <Link to={`/posts/${post.slug}`} className={`post-featured card ${className}`}>
         <div className="post-featured__shine" />
         <div className="post-featured__eyebrow">
-          <span className="label-upper">✦ destaque</span>
-          <span className="post-featured__date">{formatDate(post.date)}</span>
+          <span className="label-upper">{t('postCard.featured')}</span>
+          <span className="post-featured__date">{formatDate(post.date, locale)}</span>
         </div>
-        <h2 className="post-featured__title title-display">{post.title}</h2>
-        <p className="post-featured__excerpt">{post.excerpt}</p>
+        <h2 className="post-featured__title title-display">{title}</h2>
+        <p className="post-featured__excerpt">{excerpt}</p>
         <div className="post-featured__footer">
-          <span className="btn-primary">ler agora ~</span>
+          <span className="btn-primary">{t('postCard.readNow')}</span>
           <div className="post-featured__stats">
             <span className="post-stat">◎ {post.readTime} min</span>
           </div>
@@ -42,9 +49,9 @@ export default function PostCard({ post, featured = false, className = '' }: Pro
       <div className="label-upper" style={{ marginBottom: '5px' }}>
         {post.tags[0]}
       </div>
-      <h3 className="post-mini__title">{post.title}</h3>
+      <h3 className="post-mini__title">{title}</h3>
       <div className="post-mini__meta">
-        {formatDate(post.date)} · {post.readTime} min
+        {formatDate(post.date, locale)} · {post.readTime} min
       </div>
     </Link>
   )

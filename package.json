@@ -12,8 +12,10 @@
     "@formspree/react": "^3.0.0",
     "@giscus/react": "^3.1.0",
     "highlight.js": "^11.11.1",
+    "i18next": "^26.3.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
+    "react-i18next": "^17.0.8",
     "react-router-dom": "^6.26.2"
   },
   "devDependencies": {

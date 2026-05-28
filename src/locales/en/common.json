@@ -1,0 +1,70 @@
+{
+  "nav": {
+    "home": "home",
+    "posts": "posts",
+    "about": "about"
+  },
+  "home": {
+    "recentPosts": "// recent posts"
+  },
+  "posts": {
+    "title": "// posts",
+    "subtitle": "bugs, learnings and ramblings",
+    "search": "search...",
+    "all": "all",
+    "empty": "no posts found :(",
+    "readTime": "{{min}} min"
+  },
+  "post": {
+    "back": "~ back",
+    "readTime": "◎ {{min}} min read",
+    "allPosts": "~ see all posts",
+    "guestbook": "guestbook ♡"
+  },
+  "sidebar": {
+    "greeting": "hi, i'm luana",
+    "bio": "dev & other things",
+    "online": "online",
+    "music": "// song of the day",
+    "mood": "// mood",
+    "energy": "{{day}} energy: {{pct}}%",
+    "tags": "// tags",
+    "days": ["sunday", "monday", "tuesday", "wednesday", "thursday", "friday", "saturday"]
+  },
+  "about": {
+    "name": "hi, i'm luana",
+    "tagline": "full-stack dev and aspiring devops",
+    "online": "online",
+    "bio": "// about me",
+    "bio1": "I've been a full-stack dev for about 3 years. I've worked with many technologies, but currently I work with Go on the backend and React/TypeScript on the frontend. Along with microservices, Kafka, MongoDB, gRPC - the whole stack.",
+    "bio2": "This blog is my little corner to document what I learn, the bugs that knock me down, cost me sleep (and help me grow), and the solutions that finally make sense. I write for myself, but I'm happy if it helps someone along the way. Each post has a feedback button: if something doesn't make sense, if there's an error, or if you want to share a similar experience, let me know! I love learning from other people.",
+    "bio3": "Outside of work: my love, cocktails, my cat, 8 ball pool and a lot of questionable music.",
+    "stack": "// current stack",
+    "links": "// links",
+    "now": "// now",
+    "nowItems": [
+      "learning about everything I can",
+      "debugging things I built and forgot",
+      "thinking about becoming a kubestronaut someday. missing $",
+      "drinking too much coffee. gastritis right now - moderate"
+    ]
+  },
+  "postCard": {
+    "featured": "✦ featured",
+    "readNow": "read now ~"
+  },
+  "guestbook": {
+    "title": "// guestbook",
+    "subtitle": "leave a message, a tip, feedback, anything ✨",
+    "yourMessage": "// your message",
+    "name": "name / nickname",
+    "namePlaceholder": "luana",
+    "message": "message",
+    "messagePlaceholder": "hey luana! your blog is...",
+    "submit": "send",
+    "submitting": "sending...",
+    "success": "message sent. thank you! 🩷",
+    "sendAnother": "send another",
+    "entries": "// inspirations"
+  }
+}

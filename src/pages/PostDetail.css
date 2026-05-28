@@ -94,19 +94,73 @@
 .post-content__code-wrap {
   position: relative;
   border-radius: var(--r-md);
-  overflow: hidden;
   border: 1px solid rgba(255,20,147,0.2);
+}
+.post-content__code-wrap .post-content__pre {
+  border-radius: 0 0 var(--r-md) var(--r-md);
+  overflow-x: auto;
+}
+.post-content__code-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: rgba(255,20,147,0.12);
+  border-bottom: 1px solid rgba(255,20,147,0.15);
+  padding: 0 8px 0 0;
+  overflow: visible;
 }
 .post-content__code-lang {
   display: block;
-  background: rgba(255,20,147,0.12);
   padding: 4px 14px;
   font-size: 9px;
   font-family: var(--font-mono);
   color: var(--pink);
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  border-bottom: 1px solid rgba(255,20,147,0.15);
+}
+.post-content__copy {
+  position: relative;
+  margin-left: auto;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 13px;
+  color: rgba(255,100,180,0.4);
+  padding: 2px 4px;
+  border-radius: 4px;
+  transition: color 0.15s, background 0.15s;
+  line-height: 1;
+}
+.post-content__copy:hover {
+  color: var(--pink-soft);
+  background: rgba(255,20,147,0.1);
+}
+.post-content__copy::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  bottom: calc(100% + 6px);
+  left: 50%;
+  transform: translateX(-50%) translateY(4px);
+  background: rgba(30, 12, 30, 0.92);
+  color: var(--pink-soft, #ff64b4);
+  font-size: 11px;
+  font-family: var(--font-mono);
+  white-space: nowrap;
+  padding: 3px 8px;
+  border-radius: 4px;
+  border: 1px solid rgba(255,100,180,0.2);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.15s, transform 0.15s;
+}
+.post-content__copy:hover::after,
+.post-content__copy--copied::after {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+.post-content__copy--copied {
+  color: var(--pink-soft, #ff64b4);
 }
 .post-content__pre {
   background: rgba(0,0,0,0.4);
@@ -125,6 +179,12 @@
   height: 460px;
   border-radius: var(--r-md);
   overflow: hidden;
+}
+.post-content__svg {
+  width: 100%;
+  height: auto;
+  border-radius: var(--r-md);
+  display: block;
 }
 
 .post-content__figure {

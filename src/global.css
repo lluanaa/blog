@@ -54,7 +54,7 @@ body {
   background: var(--purple-deep);
   color: var(--white-dim);
   min-height: 100dvh;
-  overflow-x: hidden;
+  overflow-x: clip;
 }
 
 /* ambient orbs — rendered via a fixed pseudo layer */

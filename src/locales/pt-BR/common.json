@@ -1,0 +1,70 @@
+{
+  "nav": {
+    "home": "início",
+    "posts": "posts",
+    "about": "sobre"
+  },
+  "home": {
+    "recentPosts": "// posts recentes"
+  },
+  "posts": {
+    "title": "// posts",
+    "subtitle": "debugs, aprendizados e devaneios",
+    "search": "pesquisar...",
+    "all": "todos",
+    "empty": "nenhum post encontrado :(",
+    "readTime": "{{min}} min"
+  },
+  "post": {
+    "back": "~ voltar",
+    "readTime": "◎ {{min}} min de leitura",
+    "allPosts": "~ ver todos os posts",
+    "guestbook": "guestbook ♡"
+  },
+  "sidebar": {
+    "greeting": "oi, eu sou a luana",
+    "bio": "dev & mais umas coisas",
+    "online": "online",
+    "music": "// música do dia",
+    "mood": "// humor",
+    "energy": "energia de {{day}}: {{pct}}%",
+    "tags": "// tags",
+    "days": ["domingo", "segunda", "terça", "quarta", "quinta", "sexta", "sábado"]
+  },
+  "about": {
+    "name": "oi, eu sou a luana",
+    "tagline": "dev full-stack e aspirante a devops",
+    "online": "online",
+    "bio": "// sobre mim",
+    "bio1": "Sou dev full-stack há aproximadamente 3 anos. Já trabalhei com muitas tecnologias, mas atualmente trabalho com Go no backend e React/TypeScript no frontend. Junto com microserviços, Kafka, MongoDB, gRPC, o pacote completo.",
+    "bio2": "Esse blog é o meu cantinho para documentar o que aprendo, os bugs que me derrubam, me fazem perder noites de sono (e crescer), e as soluções que finalmente fazem sentido. Escrevo pra mim mesma, mas fico feliz se ajudar alguém no caminho. Em cada post tem o botão de feedback: se algo não fizer sentido, se tiver um erro, ou se você quiser compartilhar uma experiência parecida, me conta lá! Adoro aprender com outras pessoas.",
+    "bio3": "Fora do trabalho: meu amor, coquetelaria, meu gato, 8 ball pool e muita música duvidosa.",
+    "stack": "// stack atual",
+    "links": "// links",
+    "now": "// agora",
+    "nowItems": [
+      "aprendendo sobre tudo que posso",
+      "debuggando coisas que eu mesma criei e esqueci",
+      "pensando em ser uma kubestronauta um dia. me falta $",
+      "tomando café demais. gastrite nesse momento - moderada"
+    ]
+  },
+  "postCard": {
+    "featured": "✦ destaque",
+    "readNow": "ler agora ~"
+  },
+  "guestbook": {
+    "title": "// guestbook",
+    "subtitle": "deixa uma mensagem, uma dica, um feedback, qlqr coisa ✨",
+    "yourMessage": "// sua mensagem",
+    "name": "nome / nickname",
+    "namePlaceholder": "luana",
+    "message": "mensagem",
+    "messagePlaceholder": "oi luana! seu blog é...",
+    "submit": "enviar",
+    "submitting": "enviando...",
+    "success": "mensagem enviada. obrigada! 🩷",
+    "sendAnother": "enviar outra",
+    "entries": "// inspirações"
+  }
+}
