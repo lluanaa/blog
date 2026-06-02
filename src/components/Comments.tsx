@@ -8,10 +8,10 @@ export default function Comments() {
   return (
     <div className="comments">
       <Giscus
-        repo="lluanaa/blog-comments"
-        repoId="R_kgDOSoskcA"
-        category="General"
-        categoryId="DIC_kwDOSoskcM4C954Y"
+        repo={import.meta.env.VITE_GISCUS_REPO}
+        repoId={import.meta.env.VITE_GISCUS_REPO_ID}
+        category={import.meta.env.VITE_GISCUS_CATEGORY}
+        categoryId={import.meta.env.VITE_GISCUS_CATEGORY_ID}
         mapping="pathname"
         strict="0"
         reactionsEnabled="1"
