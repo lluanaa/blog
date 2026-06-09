@@ -8,7 +8,7 @@ export default function Comments() {
   return (
     <div className="comments">
       <Giscus
-        repo={import.meta.env.VITE_GISCUS_REPO}
+        repo={import.meta.env.VITE_GISCUS_REPO as `${string}/${string}`}
         repoId={import.meta.env.VITE_GISCUS_REPO_ID}
         category={import.meta.env.VITE_GISCUS_CATEGORY}
         categoryId={import.meta.env.VITE_GISCUS_CATEGORY_ID}
