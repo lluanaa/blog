@@ -135,7 +135,7 @@ t.Format(time.RFC3339)
 
 Precisei corrigir datas erradas num documento. O problema era que **dois grupos de campos no mesmo documento esperavam formatos diferentes** - e eu só percebi isso quando fui ver o schema de perto.
 
-Os campos de \`policy\` não usavam milissegundos. Os de \`bidding\` sim. O mesmo documento, dois formatos diferentes. Quando fui corrigir, precisei usar o certo para cada um:
+O mesmo documento, dois grupos de campos, dois formatos diferentes. Quando fui corrigir, precisei usar o certo para cada um:
 
 \`\`\`go
 const msFormat = "2006-01-02T15:04:05.999Z07:00"
@@ -146,12 +146,12 @@ correctEnd   := time.Date(2030, 5, 26, 22, 59, 59, 999000000, time.UTC)
 _, err = col.UpdateOne(ctx,
     bson.M{"_id": docID},
     bson.M{"$set": bson.M{
-        "policy.lifetimestart": correctStart.Format(time.RFC3339),
-        "policy.lifetimeend":   correctEnd.Format(time.RFC3339),
+        "contract.start": correctStart.Format(time.RFC3339),
+        "contract.end":   correctEnd.Format(time.RFC3339),
         // → "2026-05-26T22:59:59Z"
 
-        "bidding.lifetimestart": correctStart.Format(msFormat),
-        "bidding.lifetimeend":   correctEnd.Format(msFormat),
+        "order.start": correctStart.Format(msFormat),
+        "order.end":   correctEnd.Format(msFormat),
         // → "2026-05-26T22:59:59.999Z"
     }},
 )
@@ -280,11 +280,11 @@ t.Format(time.RFC3339)
 // "2026-06-09T21:30:00Z"
 \`\`\`
 
-## real example: a migration
+## real example:
 
 I had to fix wrong dates in a document. The problem was that **two groups of fields in the same document expected different formats** - I only noticed when I looked at the schema closely.
 
-The \`policy\` fields didn't use milliseconds. The \`bidding\` ones did. Same document, two different formats. When fixing it, I had to use the right one for each:
+Same document, two groups of fields, two different formats. When fixing it, I had to use the right one for each:
 
 \`\`\`go
 const msFormat = "2006-01-02T15:04:05.999Z07:00"
@@ -295,12 +295,12 @@ correctEnd   := time.Date(2030, 5, 26, 22, 59, 59, 999000000, time.UTC)
 _, err = col.UpdateOne(ctx,
     bson.M{"_id": docID},
     bson.M{"$set": bson.M{
-        "policy.lifetimestart": correctStart.Format(time.RFC3339),
-        "policy.lifetimeend":   correctEnd.Format(time.RFC3339),
+        "contract.start": correctStart.Format(time.RFC3339),
+        "contract.end":   correctEnd.Format(time.RFC3339),
         // → "2026-05-26T22:59:59Z"
 
-        "bidding.lifetimestart": correctStart.Format(msFormat),
-        "bidding.lifetimeend":   correctEnd.Format(msFormat),
+        "order.start": correctStart.Format(msFormat),
+        "order.end":   correctEnd.Format(msFormat),
         // → "2026-05-26T22:59:59.999Z"
     }},
 )
