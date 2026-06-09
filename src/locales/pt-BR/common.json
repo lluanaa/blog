@@ -2,6 +2,7 @@
   "nav": {
     "home": "início",
     "posts": "posts",
+    "books": "livros",
     "about": "sobre"
   },
   "home": {
@@ -48,6 +49,12 @@
       "pensando em ser uma kubestronauta um dia. me falta $",
       "tomando café demais. gastrite nesse momento - moderada"
     ]
+  },
+  "books": {
+    "title": "// livros",
+    "subtitle": "leituras que valem o tempo",
+    "free": "grátis",
+    "read": "ler"
   },
   "postCard": {
     "featured": "✦ destaque",

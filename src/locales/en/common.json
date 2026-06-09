@@ -2,6 +2,7 @@
   "nav": {
     "home": "home",
     "posts": "posts",
+    "books": "books",
     "about": "about"
   },
   "home": {
@@ -48,6 +49,12 @@
       "thinking about becoming a kubestronaut someday. missing $",
       "drinking too much coffee. gastritis right now - moderate"
     ]
+  },
+  "books": {
+    "title": "// books",
+    "subtitle": "reads worth your time",
+    "free": "free",
+    "read": "read"
   },
   "postCard": {
     "featured": "✦ featured",

@@ -11,6 +11,7 @@ export default function Navbar() {
   const links = [
     { to: '/',       label: t('nav.home') },
     { to: '/posts',  label: t('nav.posts') },
+    { to: '/books',  label: t('nav.books') },
     { to: '/sobre',  label: t('nav.about') },
   ]
 
