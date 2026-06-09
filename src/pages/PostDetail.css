@@ -181,10 +181,15 @@
   overflow: hidden;
 }
 .post-content__svg {
-  width: 100%;
+  width: 92%;
   height: auto;
   border-radius: var(--r-md);
   display: block;
+  margin: 0 auto;
+}
+
+@media (max-width: 600px) {
+  .post-content__svg { width: 100%; }
 }
 
 .post-content__figure {

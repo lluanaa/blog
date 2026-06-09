@@ -8,7 +8,7 @@
     </filter>
   </defs>
 
-  <text x="280" y="42" text-anchor="middle" font-family="monospace" font-size="22" font-weight="700" fill="#00ff88" filter="url(#glow-green)">after ✅💚</text>
+  <text x="280" y="42" text-anchor="middle" font-family="monospace" font-size="22" font-weight="700" fill="#00ff88">after ✅</text>
 
   <!-- Code: setup order -->
   <rect x="20" y="56" width="520" height="68" rx="8" fill="rgba(0,255,136,0.04)" stroke="rgba(0,255,136,0.2)" stroke-width="1"/>
