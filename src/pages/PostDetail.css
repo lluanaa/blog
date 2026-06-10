@@ -173,6 +173,14 @@
   font-size: 12px;
   color: rgba(255,220,240,0.8);
   line-height: 1.7;
+  tab-size: 4;
+  -moz-tab-size: 4;
+}
+.post-content__pre .hljs-comment {
+  color: rgba(180, 130, 160, 0.55);
+  font-style: italic;
+  letter-spacing: 0.01em;
+  padding-left: 1ch;
 }
 .post-content__iframe {
   width: 100%;
@@ -236,6 +244,31 @@
   padding: 1px 6px;
   border-radius: 4px;
   border: 1px solid rgba(255,20,147,0.2);
+}
+
+.post-content__table-wrap {
+  overflow-x: auto;
+  margin: 16px 0;
+}
+.post-content__table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+  font-family: var(--font-mono);
+}
+.post-content__table th,
+.post-content__table td {
+  padding: 8px 14px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  text-align: left;
+}
+.post-content__table th {
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--pink-soft);
+  font-weight: 600;
+}
+.post-content__table tr:hover td {
+  background: rgba(255, 255, 255, 0.03);
 }
 
 .post-detail__footer {

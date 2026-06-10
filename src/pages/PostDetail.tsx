@@ -76,6 +76,32 @@ function renderContent(raw: string) {
       )
     } else if (line.trim() === '') {
       // skip blank lines
+    } else if (line.trim().startsWith('|')) {
+      const tableLines: string[] = []
+      while (i < lines.length && lines[i].trim().startsWith('|')) {
+        tableLines.push(lines[i])
+        i++
+      }
+      const [headerRow, , ...bodyRows] = tableLines
+      const parseRow = (row: string) =>
+        row.split('|').slice(1, -1).map(cell => cell.trim())
+      const headers = parseRow(headerRow)
+      const rows = bodyRows.map(parseRow)
+      elements.push(
+        <div key={i} className="post-content__table-wrap">
+          <table className="post-content__table">
+            <thead>
+              <tr>{headers.map((h, j) => <th key={j} dangerouslySetInnerHTML={{ __html: h.replace(/`(.+?)`/g, '<code class="post-content__inline-code">$1</code>') }} />)}</tr>
+            </thead>
+            <tbody>
+              {rows.map((row, j) => (
+                <tr key={j}>{row.map((cell, k) => <td key={k} dangerouslySetInnerHTML={{ __html: cell.replace(/`(.+?)`/g, '<code class="post-content__inline-code">$1</code>') }} />)}</tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      )
+      continue
     } else if (/^\[iframe\]\(.*?\)$/.test(line.trim())) {
       const match = line.trim().match(/^\[iframe\]\((.*?)\)$/)
       if (match) {
@@ -101,6 +127,7 @@ function renderContent(raw: string) {
       const html = line
         .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
         .replace(/\*(.+?)\*/g, '<em>$1</em>')
+        .replace(/_(.+?)_/g, '<em>$1</em>')
         .replace(/`(.+?)`/g, '<code class="post-content__inline-code">$1</code>')
         .replace(/\[(.+?)\]\((https?:\/\/[^)]+)\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer" class="post-content__link">$1</a>')
       elements.push(
