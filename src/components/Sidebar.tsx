@@ -2,7 +2,6 @@ import { useTranslation } from 'react-i18next'
 import { getTodaysTrack } from '../data/nowPlaying'
 import './Sidebar.css'
 
-const energyByDay = [30, 20, 45, 55, 60, 80, 99]
 const emojiByDay  = ['😴', '😮‍💨', '🫠', '🙏​', '😶‍🌫️​', '🥳', '✨']
 const tags = ['golang', 'react', 'kafka', 'mongodb', 'bugs', 'chaos', 'dev life', 'git', 'crying', 'typescript', 'learning', 'career']
 
@@ -10,7 +9,6 @@ export default function Sidebar() {
   const { t } = useTranslation()
   const trackId = getTodaysTrack()
   const dayIndex = new Date().getDay()
-  const energy = energyByDay[dayIndex]
   const emoji  = emojiByDay[dayIndex]
   const moodTexts = t('sidebar.moodText', { returnObjects: true }) as string[]
   const moodText = moodTexts[dayIndex]
