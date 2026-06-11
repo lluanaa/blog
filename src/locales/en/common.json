@@ -27,8 +27,17 @@
     "bio": "dev & other things",
     "online": "online",
     "music": "// song of the day",
-    "mood": "// mood",
+    "mood": "// status",
     "energy": "{{day}} energy: {{pct}}%",
+    "moodText": [
+      "process idle. waiting for input.",
+      "restarting after 48h downtime.",
+      "uptime: 2 days. stability: questionable.",
+      "checkpoint reached. halfway through sprint.",
+      "build passing. almost there.",
+      "deploying to prod. fingers crossed.",
+      "sandbox mode. nothing ships today."
+    ],
     "tags": "// tags",
     "days": ["sunday", "monday", "tuesday", "wednesday", "thursday", "friday", "saturday"]
   },
@@ -41,6 +50,9 @@
     "bio2": "This blog is my little corner to document what I learn, the bugs that knock me down, cost me sleep (and help me grow), and the solutions that finally make sense. I write for myself, but I'm happy if it helps someone along the way. Each post has a feedback button: if something doesn't make sense, if there's an error, or if you want to share a similar experience, let me know! I love learning from other people.",
     "bio3": "Outside of work: my love, cocktails, my cat, 8 ball pool and a lot of questionable music.",
     "stack": "// current stack",
+    "stackDaily": "daily use",
+    "stackStudying": "studying",
+    "stackWantToLearn": "want to learn",
     "links": "// links",
     "now": "// now",
     "nowItems": [
@@ -59,6 +71,10 @@
   "postCard": {
     "featured": "✦ featured",
     "readNow": "read now ~"
+  },
+  "footer": {
+    "madeWith": "made with",
+    "by": "by"
   },
   "guestbook": {
     "title": "// guestbook",

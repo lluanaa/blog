@@ -24,7 +24,7 @@ export default function PostCard({ post, featured = false, className = '' }: Pro
 
   if (featured) {
     return (
-      <Link to={`/posts/${post.slug}`} className={`post-featured card ${className}`}>
+      <Link to={`/posts/${post.slug}`} className={`post-featured card ${className}`} style={post.gopher ? { '--gopher-url': `url(${post.gopher})` } as React.CSSProperties : undefined}>
         <div className="post-featured__shine" />
         <div className="post-featured__eyebrow">
           <span className="label-upper">{t('postCard.featured')}</span>
@@ -43,7 +43,7 @@ export default function PostCard({ post, featured = false, className = '' }: Pro
   }
 
   return (
-    <Link to={`/posts/${post.slug}`} className="post-mini card">
+    <Link to={`/posts/${post.slug}`} className="post-mini card" style={post.gopher ? { '--gopher-url': `url(${post.gopher})` } as React.CSSProperties : undefined}>
       <div className="post-mini__shine" />
       <div className="post-mini__accent">{post.accent}</div>
       <div className="label-upper" style={{ marginBottom: '5px' }}>

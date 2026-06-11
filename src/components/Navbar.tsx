@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import './Navbar.css'
@@ -8,11 +8,24 @@ export default function Navbar() {
   const [open, setOpen] = useState(false)
   const { t, i18n } = useTranslation()
 
+  const [theme, setTheme] = useState<'dark' | 'light'>(() => {
+    return (localStorage.getItem('theme') as 'dark' | 'light') ?? 'dark'
+  })
+
+  useEffect(() => {
+    document.documentElement.setAttribute('data-theme', theme)
+    localStorage.setItem('theme', theme)
+  }, [theme])
+
+  function toggleTheme() {
+    setTheme(t => t === 'dark' ? 'light' : 'dark')
+  }
+
   const links = [
-    { to: '/',       label: t('nav.home') },
-    { to: '/posts',  label: t('nav.posts') },
-    { to: '/books',  label: t('nav.books') },
-    { to: '/sobre',  label: t('nav.about') },
+    { to: '/', label: t('nav.home') },
+    { to: '/posts', label: t('nav.posts') },
+    { to: '/books', label: t('nav.books') },
+    { to: '/sobre', label: t('nav.about') },
   ]
 
   function toggleLang() {
@@ -21,7 +34,9 @@ export default function Navbar() {
     localStorage.setItem('lang', next)
   }
 
-  const langLabel = i18n.language === 'pt-BR' ? 'en' : 'pt'
+  const langLabel = i18n.language === 'pt-BR'
+    ? { flag: '🇺🇸', code: 'en' }
+    : { flag: '🇧🇷', code: 'pt' }
 
   return (
     <>
@@ -44,12 +59,8 @@ export default function Navbar() {
               </Link>
             </li>
           ))}
-          <li>
-            <button className="navbar__lang" onClick={toggleLang} aria-label="toggle language">
-              {langLabel}
-            </button>
-          </li>
         </ul>
+
 
         {/* mobile burger */}
         <button
@@ -78,14 +89,44 @@ export default function Navbar() {
           className="mobile-drawer__link mobile-drawer__lang"
           onClick={() => { toggleLang(); setOpen(false) }}
         >
-          <span className="mobile-drawer__icon">✦</span>
+          <span className="mobile-drawer__icon">
+            {i18n.language === 'pt-BR' ? '🇺🇸' : '🇧🇷'}
+          </span>
           {i18n.language === 'pt-BR' ? 'english' : 'português'}
+        </button>
+        <button
+          className="mobile-drawer__link mobile-drawer__lang"
+          onClick={() => {
+            toggleTheme()
+            setOpen(false)
+          }}
+        >
+          <span className="mobile-drawer__icon">
+            {theme === 'dark' ? '☀️' : '🌙'}
+          </span>
+
+          {theme === 'dark'
+            ? (i18n.language === 'pt-BR' ? 'tema claro' : 'light theme')
+            : (i18n.language === 'pt-BR' ? 'tema escuro' : 'dark theme')}
         </button>
       </div>
 
       {open && (
         <div className="mobile-overlay" onClick={() => setOpen(false)} />
       )}
+
+      {/* floating controls */}
+      <div className="floating-controls">
+        <button className="floating-btn" onClick={toggleLang} aria-label="toggle language">
+          <span className="navbar__ctrl-flag">{langLabel.flag}</span>
+          <span className="navbar__ctrl-code">{langLabel.code}</span>
+        </button>
+        <label className="navbar__switch floating-switch" aria-label="toggle theme">
+          <input type="checkbox" checked={theme === 'light'} onChange={toggleTheme} />
+          <span className="navbar__slider" />
+          <span className="navbar__decoration" />
+        </label>
+      </div>
     </>
   )
 }

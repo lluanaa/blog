@@ -10,10 +10,10 @@ export default function Sidebar() {
   const { t } = useTranslation()
   const trackId = getTodaysTrack()
   const dayIndex = new Date().getDay()
-  const days = t('sidebar.days', { returnObjects: true }) as string[]
-  const today = days[dayIndex]
   const energy = energyByDay[dayIndex]
   const emoji  = emojiByDay[dayIndex]
+  const moodTexts = t('sidebar.moodText', { returnObjects: true }) as string[]
+  const moodText = moodTexts[dayIndex]
 
   return (
     <aside className="sidebar">
@@ -44,11 +44,13 @@ export default function Sidebar() {
 
       {/* mood */}
       <div className="glass sidebar-mood">
-        <div className="label-upper" style={{ marginBottom: '10px' }}>{t('sidebar.mood')}</div>
-        <div className="sidebar-mood__emoji">{emoji}</div>
-        <div className="sidebar-mood__label">{t('sidebar.energy', { day: today, pct: energy })}</div>
-        <div className="sidebar-mood__bar">
-          <div className="sidebar-mood__fill" style={{ width: `${energy}%` }} />
+        <div className="label-upper" style={{ marginBottom: '12px' }}>{t('sidebar.mood')}</div>
+        <div className="sidebar-mood__terminal">
+          <span className="sidebar-mood__prompt">$ mood --today</span>
+          <span className="sidebar-mood__output">
+            <span className="sidebar-mood__emoji">{emoji}</span>
+            {moodText}
+          </span>
         </div>
       </div>
 

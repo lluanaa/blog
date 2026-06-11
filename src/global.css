@@ -16,6 +16,13 @@ html { scroll-behavior: smooth; }
   --white-dim:   rgba(255, 220, 240, 0.75);
   --white-muted: rgba(255, 180, 220, 0.45);
 
+  /* themeable */
+  --bg:          #1a0a2e;
+  --text:        rgba(255, 220, 240, 0.75);
+  --text-muted:  rgba(255, 180, 220, 0.45);
+  --orb-color:   #ff1493;
+  --orb-color-2: #7b2fff;
+
   /* glass surfaces */
   --glass-bg:      rgba(255, 255, 255, 0.06);
   --glass-border:  rgba(255, 100, 180, 0.22);
@@ -48,13 +55,36 @@ html { scroll-behavior: smooth; }
   --z-overlay: 200;
 }
 
+/* ── LIGHT THEME ────────────────────────────────── */
+[data-theme="light"] {
+  /* fundo: rosa suave e quente */
+  --bg:          #fce7f3;
+  --purple-deep: #fce7f3;
+  --purple-mid:  #f9d0e8;
+
+  /* texto: roxo profundo — contraste quente/frio */
+  --text:        #2d0550;
+  --white-dim:   #2d0550;
+  --text-muted:  rgba(107, 33, 168, 0.8);
+  --white-muted: rgba(107, 33, 168, 0.7);
+
+  /* glass: rosa translúcido com borda roxa */
+  --glass-bg:            rgba(255, 255, 255, 0.45);
+  --glass-border:        rgba(192, 38, 211, 0.3);
+  --glass-border-strong: rgba(255, 20, 147, 0.5);
+
+  /* orbs */
+  --orb-color:   #f472b6;
+  --orb-color-2: #a855f7;
+}
+
 /* ── BASE ───────────────────────────────────────── */
 body {
   font-family: var(--font-mono);
-  background: var(--purple-deep);
-  color: var(--white-dim);
+  background: var(--bg, var(--purple-deep));
+  color: var(--text, var(--white-dim));
   min-height: 100dvh;
-  overflow-x: clip;
+  transition: background 0.3s, color 0.3s;
 }
 
 /* ambient orbs — rendered via a fixed pseudo layer */
@@ -70,7 +100,7 @@ body::after {
 body::before {
   width: 420px; height: 420px;
   top: -80px; left: -60px;
-  background: var(--pink);
+  background: var(--orb-color, var(--pink));
   opacity: 0.18;
   transform: rotate(27deg);
   animation: orbDrift 18s ease-in-out infinite alternate;
@@ -78,7 +108,7 @@ body::before {
 body::after {
   width: 500px; height: 500px;
   bottom: -120px; right: -80px;
-  background: var(--purple-orb);
+  background: var(--orb-color-2, var(--purple-orb));
   opacity: 0.2;
   transform: rotate(-42deg);
   animation: orbDriftReverse 24s ease-in-out infinite alternate-reverse;
@@ -182,10 +212,10 @@ body::after {
 /* ── TAG PILL ───────────────────────────────────── */
 .tag-pill {
   display: inline-block;
-  padding: 2px 9px;
+  padding: 3px 12px;
   border-radius: var(--r-pill);
   border: 1px solid rgba(255, 20, 147, 0.35);
-  font-size: 11px;
+  font-size: 13px;
   font-family: var(--font-mono);
   letter-spacing: 0.06em;
   color: var(--pink-soft);
@@ -241,3 +271,128 @@ body::after {
 .fade-up-4 { animation: fadeUp 0.4s 0.24s ease both; }
 
 /* ── LAYOUT HELPERS ─────────────────────────────── */
+
+/* ── LIGHT THEME COMPONENT OVERRIDES ───────────── */
+/* paleta: fundo rosa quente #fce7f3, texto roxo profundo #3b0764 */
+
+/* navbar */
+[data-theme="light"] .navbar__logo-text          { color: #3b0764; }
+
+/* cards */
+[data-theme="light"] .post-mini__title            { color: #3b0764; }
+[data-theme="light"] .post-mini__meta             { color: rgba(107, 33, 168, 0.6); }
+[data-theme="light"] .post-mini__accent           { color: rgba(192, 38, 211, 0.3); }
+[data-theme="light"] .post-featured__title        { color: #3b0764; }
+[data-theme="light"] .post-featured__excerpt      { color: rgba(107, 33, 168, 0.7); }
+[data-theme="light"] .post-featured__date         { color: rgba(107, 33, 168, 0.55); }
+[data-theme="light"] .post-stat                   { color: rgba(107, 33, 168, 0.5); }
+
+[data-theme="light"] .home-titlebar {
+  background: rgba(255, 255, 255, 0.4);
+  border-color: rgba(192, 38, 211, 0.2);
+}
+[data-theme="light"] .home-titlebar__title        { color: rgba(107, 33, 168, 0.6); }
+
+[data-theme="light"] .sidebar-profile__greeting   { color: #3b0764; }
+[data-theme="light"] .sidebar-profile__bio        { color: rgba(107, 33, 168, 0.65); }
+[data-theme="light"] .sidebar-mood__label         { color: rgba(107, 33, 168, 0.6); }
+[data-theme="light"] .sidebar-mood__bar           { background: rgba(192, 38, 211, 0.12); }
+
+[data-theme="light"] .statusbar {
+  background: rgba(252, 215, 232, 0.92);
+  border-top-color: rgba(192, 38, 211, 0.18);
+  color: rgba(107, 33, 168, 0.65);
+}
+
+[data-theme="light"] .label-upper                 { color: #c026d3; }
+[data-theme="light"] .title-display               { color: #3b0764; }
+
+/* posts list page */
+[data-theme="light"] .posts-row__title            { color: #3b0764; }
+[data-theme="light"] .posts-row__excerpt          { color: rgba(107, 33, 168, 0.7); }
+[data-theme="light"] .posts-row__meta             { color: rgba(107, 33, 168, 0.55); }
+[data-theme="light"] .posts-row__date             { color: rgba(107, 33, 168, 0.55); }
+[data-theme="light"] .posts-row__accent           { color: rgba(192, 38, 211, 0.25); }
+
+/* post detail page */
+[data-theme="light"] .post-detail__title          { color: #3b0764; }
+[data-theme="light"] .post-detail__date           { color: rgba(107, 33, 168, 0.55); }
+[data-theme="light"] .post-detail__excerpt        { color: rgba(107, 33, 168, 0.7); }
+[data-theme="light"] .post-detail__meta           { color: rgba(107, 33, 168, 0.55); }
+[data-theme="light"] .post-content__h1            { color: #3b0764; }
+[data-theme="light"] .post-content__h2            { color: #c026d3; }
+[data-theme="light"] .post-content__p             { color: rgba(59, 7, 100, 0.82); }
+[data-theme="light"] .post-content__p strong      { color: #3b0764; }
+[data-theme="light"] .post-content__caption       { color: rgba(107, 33, 168, 0.55); }
+[data-theme="light"] .post-content__link          { color: #c026d3; text-decoration-color: rgba(192,38,211,0.4); }
+[data-theme="light"] .post-content__inline-code {
+  color: #c026d3;
+  background: rgba(192, 38, 211, 0.08);
+  border-color: rgba(192, 38, 211, 0.2);
+}
+[data-theme="light"] .post-content__code-header {
+  background: rgba(192, 38, 211, 0.08);
+  border-bottom-color: rgba(192, 38, 211, 0.15);
+}
+[data-theme="light"] .post-content__code-lang     { color: #c026d3; }
+[data-theme="light"] .post-content__copy          { color: rgba(107, 33, 168, 0.5); }
+[data-theme="light"] .post-content__code-wrap     { border-color: rgba(192, 38, 211, 0.2); }
+[data-theme="light"] .post-content__pre           { background: rgba(255, 255, 255, 0.5); }
+[data-theme="light"] .post-content__pre code      { color: rgba(59, 7, 100, 0.88); }
+[data-theme="light"] .post-content__table th,
+[data-theme="light"] .post-content__table td      { border-color: rgba(192,38,211,0.15); color: rgba(59,7,100,0.82); }
+[data-theme="light"] .post-content__table th      { background: rgba(192,38,211,0.06); color: #c026d3; }
+[data-theme="light"] .comments                    { border-top-color: rgba(192, 38, 211, 0.15); }
+
+/* about page */
+[data-theme="light"] .about-bio__text             { color: rgba(45, 5, 80, 0.82); }
+[data-theme="light"] .about-stack__icon-name      { color: rgba(45, 5, 80, 0.7); }
+[data-theme="light"] .about-link                  { color: rgba(107, 33, 168, 0.8); }
+[data-theme="light"] .about-now__list li          { color: rgba(45, 5, 80, 0.82); }
+[data-theme="light"] .about-tagline               { color: rgba(107, 33, 168, 0.75); }
+
+/* books page */
+[data-theme="light"] .book-card__title            { color: #3b0764; }
+[data-theme="light"] .book-card__author           { color: rgba(107, 33, 168, 0.7); }
+[data-theme="light"] .book-card__publisher        { color: rgba(107, 33, 168, 0.5); }
+[data-theme="light"] .book-card__accent           { color: rgba(192, 38, 211, 0.25); }
+[data-theme="light"] .books-header__sub           { color: rgba(107, 33, 168, 0.6); }
+
+/* guestbook */
+[data-theme="light"] .gb-sub                      { color: rgba(107, 33, 168, 0.65); }
+[data-theme="light"] .gb-label                    { color: rgba(107, 33, 168, 0.55); }
+[data-theme="light"] .gb-input {
+  background: rgba(255, 255, 255, 0.6);
+  color: #3b0764;
+}
+[data-theme="light"] .gb-input::placeholder       { color: rgba(107, 33, 168, 0.3); }
+[data-theme="light"] .gb-entry__name              { color: #c026d3; }
+[data-theme="light"] .gb-entry__msg               { color: rgba(59, 7, 100, 0.78); }
+[data-theme="light"] .gb-entry__time              { color: rgba(107, 33, 168, 0.45); }
+[data-theme="light"] .gb-chars                    { color: rgba(107, 33, 168, 0.4); }
+
+/* sidebar mood terminal */
+[data-theme="light"] .sidebar-mood__terminal {
+  background: rgba(255, 255, 255, 0.55);
+  border-color: rgba(192, 38, 211, 0.2);
+}
+[data-theme="light"] .sidebar-mood__prompt        { color: #c026d3; opacity: 1; }
+[data-theme="light"] .sidebar-mood__output        { color: rgba(59, 7, 100, 0.82); }
+
+/* code — increase contrast */
+[data-theme="light"] .post-content__pre code      { color: rgba(45, 5, 80, 0.92); }
+
+/* floating buttons — text visible on dark bg */
+[data-theme="light"] .floating-btn .navbar__ctrl-code { color: var(--pink-soft); }
+[data-theme="light"] .floating-btn                { border-color: rgba(255, 20, 147, 0.45); }
+
+/* status online badge */
+[data-theme="light"] .status-online {
+  background: rgba(0, 160, 80, 0.1);
+  border-color: rgba(0, 160, 80, 0.45);
+  color: #166534;
+}
+[data-theme="light"] .status-online::before {
+  background: #16a34a;
+  box-shadow: 0 0 5px #16a34a;
+}

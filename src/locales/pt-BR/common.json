@@ -27,8 +27,17 @@
     "bio": "dev & mais umas coisas",
     "online": "online",
     "music": "// música do dia",
-    "mood": "// humor",
+    "mood": "// status",
     "energy": "energia de {{day}}: {{pct}}%",
+    "moodText": [
+      "processo ocioso. aguardando input.",
+      "reiniciando após downtime de 48h.",
+      "uptime: 2 dias. estabilidade: duvidosa.",
+      "checkpoint atingido. metade do sprint.",
+      "build passando. quase lá.",
+      "deploy em produção. que vá bem.",
+      "modo sandbox. nada vai pra prod hoje."
+    ],
     "tags": "// tags",
     "days": ["domingo", "segunda", "terça", "quarta", "quinta", "sexta", "sábado"]
   },
@@ -41,6 +50,9 @@
     "bio2": "Esse blog é o meu cantinho para documentar o que aprendo, os bugs que me derrubam, me fazem perder noites de sono (e crescer), e as soluções que finalmente fazem sentido. Escrevo pra mim mesma, mas fico feliz se ajudar alguém no caminho. Em cada post tem o botão de feedback: se algo não fizer sentido, se tiver um erro, ou se você quiser compartilhar uma experiência parecida, me conta lá! Adoro aprender com outras pessoas.",
     "bio3": "Fora do trabalho: meu amor, coquetelaria, meu gato, 8 ball pool e muita música duvidosa.",
     "stack": "// stack atual",
+    "stackDaily": "uso diariamente",
+    "stackStudying": "estudando",
+    "stackWantToLearn": "quero aprender",
     "links": "// links",
     "now": "// agora",
     "nowItems": [
@@ -59,6 +71,10 @@
   "postCard": {
     "featured": "✦ destaque",
     "readNow": "ler agora ~"
+  },
+  "footer": {
+    "madeWith": "feito com",
+    "by": "por"
   },
   "guestbook": {
     "title": "// guestbook",

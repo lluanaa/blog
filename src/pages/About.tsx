@@ -1,12 +1,23 @@
 import { useTranslation } from 'react-i18next'
+import { FaGithub, FaLinkedin, FaEnvelope } from 'react-icons/fa'
+import { SiGo, SiTypescript, SiReact, SiMongodb, SiApachekafka, SiRedis, SiPostgresql, SiKubernetes, SiNodedotjs, SiDocker } from 'react-icons/si'
+import Footer from '../components/Footer'
 import './About.css'
 
 const stack = [
-  { name: 'Go', level: 72, color: '#00acd7' },
-  { name: 'React / TS', level: 85, color: '#61dafb' },
-  { name: 'MongoDB', level: 78, color: '#47a248' },
-  { name: 'Kafka', level: 65, color: '#ff69b4' },
-  { name: 'Docker', level: 60, color: '#da70d6' },
+  // linguagens
+  { icon: SiGo,          name: 'Go',          color: '#00ADD8' },
+  { icon: SiTypescript,  name: 'TypeScript',  color: '#3178C6' },
+  { icon: SiNodedotjs,   name: 'Node.js',     color: '#5FA04E' },
+  { icon: SiReact,       name: 'React',       color: '#61DAFB' },
+  // bancos
+  { icon: SiMongodb,     name: 'MongoDB',     color: '#47A248' },
+  { icon: SiPostgresql,  name: 'PostgreSQL',  color: '#4169E1' },
+  { icon: SiRedis,       name: 'Redis',       color: '#FF4438' },
+  // infra
+  { icon: SiApachekafka, name: 'Kafka',       color: undefined },
+  { icon: SiDocker,      name: 'Docker',      color: '#2496ED' },
+  { icon: SiKubernetes,  name: 'Kubernetes',  color: '#326CE5' },
 ]
 
 export default function About() {
@@ -38,36 +49,30 @@ export default function About() {
         </div>
 
         <div className="about-stack glass fade-up-3">
-          <div className="label-upper" style={{ marginBottom: '14px' }}>{t('about.stack')}</div>
-          {stack.map((s) => (
-            <div key={s.name} className="about-stack__item">
-              <div className="about-stack__row">
-                <span className="about-stack__name">{s.name}</span>
-                <span className="about-stack__pct">{s.level}%</span>
+          <div className="label-upper" style={{ marginBottom: '16px' }}>{t('about.stack')}</div>
+          <div className="about-stack__icons">
+            {stack.map(({ icon: Icon, name, color }) => (
+              <div key={name} className="about-stack__icon-item">
+                <Icon size={32} color={color} />
+                <span className="about-stack__icon-name">{name}</span>
               </div>
-              <div className="about-stack__bar">
-                <div
-                  className="about-stack__fill"
-                  style={{ width: `${s.level}%`, background: s.color }}
-                />
-              </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
 
         <div className="about-links glass fade-up-4">
           <div className="label-upper" style={{ marginBottom: '14px' }}>{t('about.links')}</div>
           <div className="about-links__list">
             <a href="https://github.com/lluanaa" target="_blank" rel="noreferrer" className="about-link">
-              <span className="about-link__icon">✦</span>
+              <FaGithub size={15} className="about-link__icon" />
               <span>github</span>
             </a>
             <a href="https://www.linkedin.com/in/luanadasilvadev/" target="_blank" rel="noreferrer" className="about-link">
-              <span className="about-link__icon">✦</span>
+              <FaLinkedin size={15} className="about-link__icon" />
               <span>linkedin</span>
             </a>
             <a href="mailto:luanadasilva.dev@gmail.com" className="about-link">
-              <span className="about-link__icon">✦</span>
+              <FaEnvelope size={15} className="about-link__icon" />
               <span>luanadasilva.dev@gmail.com</span>
             </a>
           </div>
@@ -82,6 +87,7 @@ export default function About() {
           </ul>
         </div>
       </div>
+      <Footer />
     </div>
   )
 }

@@ -93,7 +93,7 @@ export default function Posts() {
             <div className="posts-row__right">
               <div className="posts-row__date">{formatDate(p.date, isEn ? 'en-US' : 'pt-BR')}</div>
               <div className="posts-row__meta">
-                <span>◎ {p.readTime} min</span>
+                <span>✦ {p.readTime} min</span>
               </div>
               <span className="posts-row__accent">{p.accent}</span>
             </div>
