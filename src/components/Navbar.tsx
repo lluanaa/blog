@@ -85,30 +85,31 @@ export default function Navbar() {
             {l.label}
           </Link>
         ))}
-        <button
-          className="mobile-drawer__link mobile-drawer__lang"
-          onClick={() => { toggleLang(); setOpen(false) }}
-        >
-          <span className="mobile-drawer__icon">
-            {i18n.language === 'pt-BR' ? '🇺🇸' : '🇧🇷'}
-          </span>
-          {i18n.language === 'pt-BR' ? 'english' : 'português'}
-        </button>
-        <button
-          className="mobile-drawer__link mobile-drawer__lang"
-          onClick={() => {
-            toggleTheme()
-            setOpen(false)
-          }}
-        >
-          <span className="mobile-drawer__icon">
-            {theme === 'dark' ? '☀️' : '🌙'}
-          </span>
-
-          {theme === 'dark'
-            ? (i18n.language === 'pt-BR' ? 'tema claro' : 'light theme')
-            : (i18n.language === 'pt-BR' ? 'tema escuro' : 'dark theme')}
-        </button>
+        <div className="mobile-drawer__utils">
+          <button
+            className="mobile-drawer__util"
+            onClick={() => { toggleLang(); setOpen(false) }}
+          >
+            <span className="mobile-drawer__util-icon">
+              {i18n.language === 'pt-BR' ? '🇺🇸' : '🇧🇷'}
+            </span>
+            {i18n.language === 'pt-BR' ? 'english' : 'português'}
+          </button>
+          <button
+            className="mobile-drawer__util"
+            onClick={() => {
+              toggleTheme()
+              setOpen(false)
+            }}
+          >
+            <span className="mobile-drawer__util-icon">
+              {theme === 'dark' ? '☀️' : '🌙'}
+            </span>
+            {theme === 'dark'
+              ? (i18n.language === 'pt-BR' ? 'tema claro' : 'light theme')
+              : (i18n.language === 'pt-BR' ? 'tema escuro' : 'dark theme')}
+          </button>
+        </div>
       </div>
 
       {open && (

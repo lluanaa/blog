@@ -127,6 +127,11 @@ body::after {
   100% { transform: translate(-30px, -50px) rotate(-65deg) scale(1.04); }
 }
 
+@media (max-width: 600px) {
+  body::before { width: 260px; height: 260px; top: -60px; left: -40px; }
+  body::after  { width: 260px; height: 260px; bottom: -70px; right: -50px; }
+}
+
 /* ── SCROLLBAR ──────────────────────────────────── */
 ::-webkit-scrollbar { width: 4px; }
 ::-webkit-scrollbar-track { background: var(--purple-deep); }

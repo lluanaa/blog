@@ -126,7 +126,9 @@
 
 @media (max-width: 600px) {
   .posts-page { padding: 88px 16px 48px; }
-  .posts-row { flex-direction: column; gap: 10px; }
+  .posts-row { flex-direction: column; gap: 10px; height: auto; }
   .posts-row__right { flex-direction: row; align-items: center; min-width: unset; }
   .posts-row__accent { display: none; }
+  .posts-row__title { font-size: 16px; margin-bottom: 8px; }
+  .posts-row__excerpt { font-size: 14px; line-height: 1.5; }
 }
