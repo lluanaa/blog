@@ -1,4 +1,5 @@
 import { useTranslation } from 'react-i18next'
+import { useSeo } from '../hooks/useSeo'
 import './Books.css'
 
 interface Book {
@@ -43,6 +44,8 @@ const books: Book[] = [
 
 export default function Books() {
   const { t } = useTranslation()
+
+  useSeo({ title: 'books', path: '/books' })
 
   return (
     <div className="books-page">

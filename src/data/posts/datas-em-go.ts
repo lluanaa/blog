@@ -307,6 +307,5 @@ Feels weird the first time you see it. But once you remember it's just 1, 2, 3, 
   date: '2026-06-09',
   readTime: 5,
   tags: ['go', 'backend'],
-  featured: true,
   gopher: '/images/GOPHER_MIC_DROP.png',
 }

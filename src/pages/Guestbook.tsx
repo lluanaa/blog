@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { useForm, ValidationError } from '@formspree/react'
 import { useTranslation } from 'react-i18next'
+import { useSeo } from '../hooks/useSeo'
 import './Guestbook.css'
 
 interface Entry {
@@ -103,6 +104,8 @@ function GuestbookForm({ onReset }: { onReset: () => void }) {
 export default function Guestbook() {
   const [formKey, setFormKey] = useState(0)
   const { t } = useTranslation()
+
+  useSeo({ title: 'guestbook', path: '/guestbook' })
 
   return (
     <div className="gb-page">

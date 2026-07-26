@@ -82,6 +82,14 @@
   color: var(--pink-soft);
   margin-top: 4px;
 }
+.post-content__h3 {
+  font-family: var(--font-heading);
+  font-size: 15.5px;
+  font-weight: 700;
+  color: rgba(255,220,240,0.9);
+  margin-top: 2px;
+}
+.post-content__h3 code.post-content__inline-code { font-weight: 700; }
 .post-content__p {
   font-size: 15px;
   color: rgba(255,220,240,0.75);

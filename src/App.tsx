@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Navbar from './components/Navbar'
 import StatusBar from './components/StatusBar'
+import ScrollToTop from './components/ScrollToTop'
 import Home from './pages/Home'
 import Posts from './pages/Posts'
 import PostDetail from './pages/PostDetail'
@@ -12,6 +13,7 @@ import NotFound from './pages/NotFound'
 export default function App() {
   return (
     <BrowserRouter>
+      <ScrollToTop />
       <Navbar />
       <StatusBar />
       <Routes>

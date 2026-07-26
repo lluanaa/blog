@@ -7,6 +7,9 @@ import { post as fieldMask } from './field-mask'
 import { post as anosComoDev } from './3-anos-como-dev'
 import { post as runLocalRefatoracao } from './run-local-refatoracao'
 import { post as deferGo } from './defer-go'
+import { post as comandosLegais } from './comandos-legais'
+import { post as fuzzingGo } from './fuzzing-go'
+import { post as pkceJwtJwks } from './pkce-jwt-jwks'
 
 export const posts: Post[] = [
   semaforoGo,
@@ -17,18 +20,13 @@ export const posts: Post[] = [
   anosComoDev,
   runLocalRefatoracao,
   deferGo,
-]
+  comandosLegais,
+  fuzzingGo,
+  pkceJwtJwks,
+].sort((a, b) => b.date.localeCompare(a.date))
 
 export const getPostBySlug = (slug: string) => posts.find((p) => p.slug === slug)
 
 export const getFeaturedPost = () => posts.find((p) => p.featured) ?? posts[0]
 
-const RECENT_SLUGS = [
-  'semaforo-go',
-  'field-mask',
-  'run-local-refatoracao',
-  'defer-go',
-]
-
-export const getRecentPosts = (_limit = 4) =>
-  RECENT_SLUGS.map((s) => posts.find((p) => p.slug === s)).filter(Boolean) as Post[]
+export const getRecentPosts = (limit = 4) => posts.slice(0, limit)

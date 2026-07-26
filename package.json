@@ -6,7 +6,9 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "new-post": "node scripts/new-post.mjs",
+    "md-to-post": "node scripts/md-to-post.mjs"
   },
   "dependencies": {
     "@formspree/react": "^3.0.0",

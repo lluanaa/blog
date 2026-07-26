@@ -2,12 +2,19 @@ import PostCard from '../components/PostCard'
 import Sidebar from '../components/Sidebar'
 import { getFeaturedPost, getRecentPosts } from '../data/posts'
 import { useTranslation } from 'react-i18next'
+import { useSeo } from '../hooks/useSeo'
 import './Home.css'
 
 export default function Home() {
   const featured = getFeaturedPost()
   const recent = getRecentPosts(4)
   const { t } = useTranslation()
+
+  useSeo({
+    title: 'luana.dev',
+    description: 'blog pessoal sobre bugs, decisões de arquitetura, ferramentas aprendidas e a ocasional crise existencial de dev.',
+    path: '/',
+  })
 
   return (
     <div className="home-layout">

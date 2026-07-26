@@ -3,6 +3,7 @@ import { useParams, Link, Navigate, useNavigate } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { getPostBySlug } from '../data/posts'
 import Comments from '../components/Comments'
+import { useSeo } from '../hooks/useSeo'
 import hljs from 'highlight.js/lib/core'
 import go from 'highlight.js/lib/languages/go'
 import bash from 'highlight.js/lib/languages/bash'
@@ -49,7 +50,10 @@ function renderContent(raw: string) {
   while (i < lines.length) {
     const line = lines[i]
 
-    if (line.startsWith('## ')) {
+    if (line.startsWith('### ')) {
+      const html = line.slice(4).replace(/`(.+?)`/g, '<code class="post-content__inline-code">$1</code>')
+      elements.push(<h3 key={i} className="post-content__h3" dangerouslySetInnerHTML={{ __html: html }} />)
+    } else if (line.startsWith('## ')) {
       elements.push(<h2 key={i} className="post-content__h2">{line.slice(3)}</h2>)
     } else if (line.startsWith('# ')) {
       elements.push(<h1 key={i} className="post-content__h1">{line.slice(2)}</h1>)
@@ -146,10 +150,18 @@ export default function PostDetail() {
   const isEn = i18n.language === 'en'
   const post = getPostBySlug(slug ?? '')
 
+  const title = post ? (isEn && post.title_en ? post.title_en : post.title) : ''
+  const excerpt = post ? (isEn && post.excerpt_en ? post.excerpt_en : post.excerpt) : ''
+
+  useSeo({
+    title: title || 'luana.dev',
+    description: excerpt,
+    image: post?.gopher ? `https://lluana.com${post.gopher}` : undefined,
+    path: post ? `/posts/${post.slug}` : undefined,
+  })
+
   if (!post) return <Navigate to="/posts" replace />
 
-  const title = isEn && post.title_en ? post.title_en : post.title
-  const excerpt = isEn && post.excerpt_en ? post.excerpt_en : post.excerpt
   const content = isEn && post.content_en ? post.content_en : post.content
   const locale = isEn ? 'en-US' : 'pt-BR'
 

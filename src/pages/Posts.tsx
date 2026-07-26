@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { posts } from '../data/posts'
+import { useSeo } from '../hooks/useSeo'
 import './Posts.css'
 
 const allTags = Array.from(new Set(posts.flatMap((p) => p.tags)))
@@ -17,6 +18,12 @@ export default function Posts() {
   const [search, setSearch] = useState('')
   const { t, i18n } = useTranslation()
   const isEn = i18n.language === 'en'
+
+  useSeo({
+    title: t('posts.title'),
+    description: `${posts.length} posts sobre bugs, arquitetura, ferramentas e o dia a dia de dev.`,
+    path: '/posts',
+  })
 
   const filtered = posts.filter((p) => {
     const matchTag = !activeTag || p.tags.includes(activeTag)

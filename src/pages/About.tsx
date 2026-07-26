@@ -2,6 +2,7 @@ import { useTranslation } from 'react-i18next'
 import { FaGithub, FaLinkedin, FaEnvelope } from 'react-icons/fa'
 import { SiGo, SiTypescript, SiReact, SiMongodb, SiApachekafka, SiRedis, SiPostgresql, SiKubernetes, SiNodedotjs, SiDocker } from 'react-icons/si'
 import Footer from '../components/Footer'
+import { useSeo } from '../hooks/useSeo'
 import './About.css'
 
 const stack = [
@@ -23,6 +24,8 @@ const stack = [
 export default function About() {
   const { t } = useTranslation()
   const nowItems = t('about.nowItems', { returnObjects: true }) as string[]
+
+  useSeo({ title: t('about.name'), path: '/sobre' })
 
   return (
     <div className="about-page">
