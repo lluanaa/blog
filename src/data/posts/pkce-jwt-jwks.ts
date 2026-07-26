@@ -3,11 +3,11 @@ import type { Post } from './types'
 export const post: Post = {
   slug: 'pkce-jwt-jwks',
   title: 'PKCE, JWT e JWKS, o que eu aprendi implementando login com Okta',
-  title_en: 'PKCE, JWT, and JWKS, what I learned debugging an Okta login',
-  excerpt: 'um mergulho em como PKCE, JWT e JWKS se encaixam numa autenticação real de SPA + backend, depois de debugar um login com Okta que só quebrava em staging.',
-  excerpt_en: 'a deep dive into how PKCE, JWT, and JWKS fit together in a real SPA + backend authentication flow, after debugging an Okta login that only broke in staging.',
+  title_en: 'PKCE, JWT, and JWKS, what I learned implementing login with Okta',
+  excerpt: 'um mergulho em como PKCE, JWT e JWKS se encaixam numa autenticação real de SPA + backend, depois de implementar um login com Okta sem saber metade dos termos.',
+  excerpt_en: 'a deep dive into how PKCE, JWT, and JWKS fit together in a real SPA + backend authentication flow, after implementing an Okta login without knowing half the terms.',
   content: `
-semana passada eu implementei login via Okta numa aplicação React + Go. tudo funcionava local. foi pra staging e... nada. segui investigando e cada camada que eu puxava tinha um termo novo que eu nunca tinha parado pra entender de verdade: JWT, JWKS, PKCE, nonce, issuer, audience.
+semana passada eu implementei login via Okta numa aplicação React + Go. apesar de eu conhecer alguns termos, como JWT, teve alguns termos novos que eu ainda não sabia como trabalhavam em conjunto, como JWKS, PKCE, nonce, issuer, audience.
 
 fui atrás de vídeo no YouTube pra entender rápido e achei um monte de conteúdo sobre JWT sozinho, ou sobre PKCE sozinho (quase sempre focado em app mobile), mas nada juntando os três e mostrando como eles se encaixam numa aplicação web de verdade. então resolvi escrever o que eu queria ter encontrado.
 
@@ -107,7 +107,7 @@ a diferença importante: os outros 4 campos protegem o **token em si**. o nonce 
 três peças, três problemas diferentes. juntas, é o que faz um login com provedor externo funcionar de forma segura numa aplicação moderna.
 `,
   content_en: `
-last week I implemented login via Okta in a React + Go application. everything worked locally. it went to staging and... nothing. I kept investigating and every layer I pulled had a new term I'd never actually stopped to understand: JWT, JWKS, PKCE, nonce, issuer, audience.
+last week I implemented login via Okta in a React + Go application. even though I already knew some terms, like JWT, there were a few new ones I didn't yet know how they worked together, like JWKS, PKCE, nonce, issuer, audience.
 
 I went looking for videos on YouTube to understand it quickly and found a ton of content about JWT alone, or PKCE alone (almost always focused on mobile apps), but nothing putting the three together and showing how they fit into a real web application. so I decided to write what I wished I had found.
 
