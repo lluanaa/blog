@@ -45,7 +45,7 @@ const books: Book[] = [
 export default function Books() {
   const { t } = useTranslation()
 
-  useSeo({ title: 'books', path: '/books' })
+  useSeo({ title: t('books.title'), description: t('books.subtitle'), path: '/books' })
 
   return (
     <div className="books-page">

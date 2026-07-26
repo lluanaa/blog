@@ -25,7 +25,7 @@ export default function About() {
   const { t } = useTranslation()
   const nowItems = t('about.nowItems', { returnObjects: true }) as string[]
 
-  useSeo({ title: t('about.name'), path: '/sobre' })
+  useSeo({ title: t('nav.about'), path: '/sobre' })
 
   return (
     <div className="about-page">

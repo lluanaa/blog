@@ -105,7 +105,7 @@ export default function Guestbook() {
   const [formKey, setFormKey] = useState(0)
   const { t } = useTranslation()
 
-  useSeo({ title: 'guestbook', path: '/guestbook' })
+  useSeo({ title: t('guestbook.title'), description: t('guestbook.subtitle'), path: '/guestbook' })
 
   return (
     <div className="gb-page">

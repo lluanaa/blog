@@ -23,7 +23,8 @@ function setMeta(attr: 'name' | 'property', key: string, content: string) {
 
 export function useSeo({ title, description, image, path }: SeoOptions) {
   useEffect(() => {
-    const fullTitle = title === 'luana.dev' ? title : `${title} · luana.dev`
+    const cleanTitle = title.replace(/^\/\/\s*/, '')
+    const fullTitle = cleanTitle === 'luana.dev' ? cleanTitle : `${cleanTitle} · luana.dev`
     document.title = fullTitle
 
     const url = `${SITE_URL}${path ?? ''}`

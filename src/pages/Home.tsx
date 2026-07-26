@@ -11,7 +11,7 @@ export default function Home() {
   const { t } = useTranslation()
 
   useSeo({
-    title: 'luana.dev',
+    title: t('nav.home'),
     description: 'blog pessoal sobre bugs, decisões de arquitetura, ferramentas aprendidas e a ocasional crise existencial de dev.',
     path: '/',
   })
