@@ -11,6 +11,9 @@
   padding: 14px 28px;
   border-radius: var(--r-xl) !important;
   overflow: hidden;
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
+  will-change: transform;
 }
 
 .navbar__links {
