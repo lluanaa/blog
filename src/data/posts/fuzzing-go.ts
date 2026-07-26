@@ -91,7 +91,7 @@ nesses casos o fuzzer costuma achar coisas tipo: string vazia quebra o parser, u
 
 ## fechando
 
-não é ferramenta pra usar em tudo, mas pra função que mexe com dado que vem de fora do seu controle, é surpreendentemente fácil de configurar e pode achar bug que nenhum teste manual acharia. vale a pena ter no bolso.
+não é ferramenta pra usar em tudo, mas pra função que mexe com dado que vem de fora do seu controle, é surpreendentemente fácil de configurar e pode achar bug que nenhum teste manual acharia. vale a pena ter como opção.
 `,
   content_en: `
 I found out about **fuzzing** (\`go test -fuzz\`) this week, introduced in Go 1.18. official docs: [go.dev/doc/security/fuzz](https://go.dev/doc/security/fuzz/) and the [official tutorial](https://go.dev/doc/tutorial/fuzz).
