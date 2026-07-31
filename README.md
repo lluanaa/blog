@@ -1,6 +1,6 @@
 # ✦ luana.dev
 
-![License](https://img.shields.io/github/license/lluanaa/blog)
+![License](https://img.shields.io/github/license/lluanaa/blog?v=2)
 ![React](https://img.shields.io/badge/React-18-61DAFB?logo=react&logoColor=black)
 ![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?logo=typescript&logoColor=white)
 ![Vite](https://img.shields.io/badge/Vite-B73BFE?logo=vite&logoColor=white)
