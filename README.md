@@ -1,5 +1,10 @@
 # ✦ luana.dev
 
+![License](https://img.shields.io/github/license/lluanaa/blog)
+![React](https://img.shields.io/badge/React-18-61DAFB?logo=react&logoColor=black)
+![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?logo=typescript&logoColor=white)
+![Vite](https://img.shields.io/badge/Vite-B73BFE?logo=vite&logoColor=white)
+
 my personal blog, where I write about things I've actually dealt with at work - bugs, architectural decisions, tools I've learned, and the occasional existential dev crisis.
 
 live at **[luana.dev](https://lluana.com/)**
